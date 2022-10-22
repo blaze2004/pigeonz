@@ -13,7 +13,18 @@
     },
     "categories": {
       "auth": {
-        "pigeonz398194cb": {}
+        "pigeonz398194cb": {},
+        "pigeonz6984e2cf": {},
+        "pigeonz800a52ea": {}
+      },
+      "function": {
+        "pigeonz6984e2cfCustomMessage": {
+          "REDIRECTURL": "",
+          "EMAILSUBJECT": "PigeonZ email verification",
+          "EMAILMESSAGE": "",
+          "deploymentBucketName": "amplify-pigeonz-dev-172829-deployment",
+          "s3Key": "amplify-builds/pigeonz6984e2cfCustomMessage-4c6d2f43627552353672-build.zip"
+        }
       }
     }
   }
