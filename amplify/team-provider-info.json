@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-pigeonz-dev-172829-authRole",
+      "UnauthRoleArn": "arn:aws:iam::665229110435:role/amplify-pigeonz-dev-172829-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::665229110435:role/amplify-pigeonz-dev-172829-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-pigeonz-dev-172829-deployment",
+      "UnauthRoleName": "amplify-pigeonz-dev-172829-unauthRole",
+      "StackName": "amplify-pigeonz-dev-172829",
+      "StackId": "arn:aws:cloudformation:ap-south-1:665229110435:stack/amplify-pigeonz-dev-172829/d97b7da0-5200-11ed-9e52-0a62cfc811ec",
+      "AmplifyAppId": "d37lq7xy2b3t4x"
+    },
+    "categories": {
+      "auth": {
+        "pigeonz398194cb": {}
+      }
+    }
+  }
+}
