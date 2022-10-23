@@ -1,21 +1,9 @@
-.base-body {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    height: 100%;
-}
-
-.sidenavbar-container {
+.sidenavbarContainer {
     display: hidden;
-    background-color: #212332;
-}
-
-.content-area {
-    width: 100%;
 }
 
 @media screen and (min-width: 768px)  {
-    .sidenavbar-container {
+    .sidenavbarContainer {
         display: block;
     }
 }

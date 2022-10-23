@@ -1,11 +1,9 @@
-import BaseScreen from "../base/base";
+import { useAuthenticator, Heading } from '@aws-amplify/ui-react';
 
-function ScheduleScreen() {
-    return (
-        <BaseScreen>
-            <p>Namaste</p>
-        </BaseScreen>
-    )
+export function ScheduleScreen() {
+  const { route } = useAuthenticator((context) => [context.route]);
+
+  const message =
+    route === 'authenticated' ? 'FIRST PROTECTED ROUTE!' : 'Loading...';
+  return <Heading level={1}>{message}</Heading>;
 }
-
-export default ScheduleScreen;

@@ -1,25 +1,53 @@
-// import logo from './logo.svg';
-import { Amplify } from 'aws-amplify';
-
 import { Authenticator } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
+
+import { ScheduleScreen } from './screens/schedule/schedule';
+import { RequireAuth } from './screens/components/require_auth';
+import { Login } from './screens/components/login';
+import { Home } from './screens/home/home';
+import { Dashboard } from './screens/dashboard/dashboard';
+import { BaseLayout } from './screens/base/base';
+
+import { BrowserRouter, Routes, Route,} from 'react-router-dom';
+
 import './App.css';
 
-import awsExports from './aws-exports';
-Amplify.configure(awsExports);
+function MyRoutes() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* app routes */}
+        <Route path="/app">
 
-// import ScheduleScreen from './screens/schedule/schedule';
+          <Route path='' element={
+            <RequireAuth>
+              <BaseLayout />
+            </RequireAuth>
+          }>
+            <Route index
+              element={<Dashboard />}
+            />
+
+            <Route
+              path="schedule"
+              element={<ScheduleScreen />}
+            />
+          </Route>
+
+          <Route path="auth" element={<Login />} />
+
+        </Route>
+
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
 function App() {
   return (
-    <Authenticator signUpAttributes={['name']}>
-      {({ signOut, user }) => (
-        <main>
-          <h1>Hello {user.attributes['name']}</h1>
-          <button onClick={signOut}>Sign out</button>
-        </main>
-      )}
-    </Authenticator>
+    <Authenticator.Provider>
+      <MyRoutes />
+    </Authenticator.Provider>
   );
 }
 
