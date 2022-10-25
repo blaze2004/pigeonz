@@ -4,6 +4,6 @@ export function ScheduleScreen() {
   const { route } = useAuthenticator((context) => [context.route]);
 
   const message =
-    route === 'authenticated' ? 'FIRST PROTECTED ROUTE!' : 'Loading...';
+    route === 'authenticated' ? 'Schedule' : 'Loading...';
   return <Heading level={1}>{message}</Heading>;
 }

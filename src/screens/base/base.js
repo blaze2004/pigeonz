@@ -5,6 +5,7 @@ import { View, Flex, useAuthenticator, Button } from '@aws-amplify/ui-react';
 import SideNavBar from '../components/sidenavigation';
 import Header from '../components/header';
 import './base.css';
+import { Routes } from '../../values/routes';
 
 export function BaseLayout() {
 
@@ -15,7 +16,7 @@ export function BaseLayout() {
 
   function logOut() {
     signOut();
-    navigate('/app/auth');
+    navigate(Routes.get("Auth"));
   }
 
   return (

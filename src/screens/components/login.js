@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import { Authenticator, useAuthenticator, View, Flex, Image } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
+import { Routes } from "../../values/routes";
 
 import { useNavigate, useLocation } from 'react-router';
 
@@ -9,7 +10,7 @@ export function Login() {
   const { route }=useAuthenticator((context) => [context.route]);
   const location=useLocation();
   const navigate=useNavigate();
-  let from=location.state?.from?.pathname||'/app';
+  let from=location.state?.from?.pathname|| Routes.get("Dashboard");
   useEffect(() => {
     if (route==='authenticated') {
       navigate(from, { replace: true });

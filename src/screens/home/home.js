@@ -1,5 +1,7 @@
 import { Heading, Button } from '@aws-amplify/ui-react';
 import { useNavigate } from 'react-router-dom';
+import { Routes } from '../../values/routes';
+
 export function Home() {
 
   const navigate=useNavigate();
@@ -9,7 +11,7 @@ export function Home() {
       <Heading level={3}>
         PigeonZ HomeScreen
       </Heading>
-      <Button onClick={() => navigate('/app/auth')}>Login</Button>
+      <Button onClick={() => navigate(Routes.get("Auth"))}>Login</Button>
     </>
   );
 }
