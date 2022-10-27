@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "pigeonz",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authpigeonz800a52ea",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

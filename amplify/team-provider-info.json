@@ -24,7 +24,14 @@
           "EMAILMESSAGE": "",
           "deploymentBucketName": "amplify-pigeonz-dev-172829-deployment",
           "s3Key": "amplify-builds/pigeonz6984e2cfCustomMessage-4c6d2f43627552353672-build.zip"
+        },
+        "CreateUserProfile": {
+          "deploymentBucketName": "amplify-pigeonz-dev-172829-deployment",
+          "s3Key": "amplify-builds/CreateUserProfile-4c69323449354a6f4a61-build.zip"
         }
+      },
+      "api": {
+        "pigeonz": {}
       }
     }
   }
