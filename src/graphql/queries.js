@@ -28,100 +28,6 @@ export const listCategories = /* GraphQL */ `
     }
   }
 `;
-export const getEvent = /* GraphQL */ `
-  query GetEvent($id: ID!) {
-    getEvent(id: $id) {
-      id
-      name
-      banner_image
-      registration_link
-      resources {
-        items {
-          id
-          title
-          content
-          createdAt
-          updatedAt
-          userResourcesId
-          communityResourcesId
-          eventResourcesId
-        }
-        nextToken
-      }
-      community {
-        id
-        name
-        description
-        profile_image
-        banner_image
-        links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
-        admins {
-          nextToken
-        }
-        members {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        userCommunitiesId
-      }
-      createdAt
-      updatedAt
-      userEventsId
-      communityEventsId
-    }
-  }
-`;
-export const listEvents = /* GraphQL */ `
-  query ListEvents(
-    $filter: ModelEventFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        banner_image
-        registration_link
-        resources {
-          nextToken
-        }
-        community {
-          id
-          name
-          description
-          profile_image
-          banner_image
-          links
-          createdAt
-          updatedAt
-          userCommunitiesId
-        }
-        createdAt
-        updatedAt
-        userEventsId
-        communityEventsId
-      }
-      nextToken
-    }
-  }
-`;
 export const getResourceType = /* GraphQL */ `
   query GetResourceType($id: ID!) {
     getResourceType(id: $id) {
@@ -144,142 +50,6 @@ export const listResourceTypes = /* GraphQL */ `
         name
         createdAt
         updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getResource = /* GraphQL */ `
-  query GetResource($id: ID!) {
-    getResource(id: $id) {
-      id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      title
-      content
-      tags {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          resourceTagsId
-          owner
-        }
-        nextToken
-      }
-      user {
-        id
-        name
-        email
-        communities {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        communityAdminsId
-        communityMembersId
-        owner
-      }
-      community {
-        id
-        name
-        description
-        profile_image
-        banner_image
-        links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
-        admins {
-          nextToken
-        }
-        members {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        userCommunitiesId
-      }
-      createdAt
-      updatedAt
-      userResourcesId
-      communityResourcesId
-      eventResourcesId
-    }
-  }
-`;
-export const listResources = /* GraphQL */ `
-  query ListResources(
-    $filter: ModelResourceFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listResources(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        type {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        title
-        content
-        tags {
-          nextToken
-        }
-        user {
-          id
-          name
-          email
-          createdAt
-          updatedAt
-          communityAdminsId
-          communityMembersId
-          owner
-        }
-        community {
-          id
-          name
-          description
-          profile_image
-          banner_image
-          links
-          createdAt
-          updatedAt
-          userCommunitiesId
-        }
-        createdAt
-        updatedAt
-        userResourcesId
-        communityResourcesId
-        eventResourcesId
       }
       nextToken
     }
@@ -536,6 +306,236 @@ export const listTags = /* GraphQL */ `
         updatedAt
         resourceTagsId
         owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getEvent = /* GraphQL */ `
+  query GetEvent($id: ID!) {
+    getEvent(id: $id) {
+      id
+      name
+      banner_image
+      registration_link
+      resources {
+        items {
+          id
+          title
+          content
+          createdAt
+          updatedAt
+          userResourcesId
+          communityResourcesId
+          eventResourcesId
+        }
+        nextToken
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        category {
+          id
+          title
+          createdAt
+          updatedAt
+        }
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userCommunitiesId
+      }
+      createdAt
+      updatedAt
+      userEventsId
+      communityEventsId
+    }
+  }
+`;
+export const listEvents = /* GraphQL */ `
+  query ListEvents(
+    $filter: ModelEventFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        banner_image
+        registration_link
+        resources {
+          nextToken
+        }
+        community {
+          id
+          name
+          description
+          profile_image
+          banner_image
+          links
+          createdAt
+          updatedAt
+          userCommunitiesId
+        }
+        createdAt
+        updatedAt
+        userEventsId
+        communityEventsId
+      }
+      nextToken
+    }
+  }
+`;
+export const getResource = /* GraphQL */ `
+  query GetResource($id: ID!) {
+    getResource(id: $id) {
+      id
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      title
+      content
+      tags {
+        items {
+          id
+          title
+          createdAt
+          updatedAt
+          resourceTagsId
+          owner
+        }
+        nextToken
+      }
+      user {
+        id
+        name
+        email
+        communities {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        communityAdminsId
+        communityMembersId
+        owner
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        category {
+          id
+          title
+          createdAt
+          updatedAt
+        }
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userCommunitiesId
+      }
+      createdAt
+      updatedAt
+      userResourcesId
+      communityResourcesId
+      eventResourcesId
+    }
+  }
+`;
+export const listResources = /* GraphQL */ `
+  query ListResources(
+    $filter: ModelResourceFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listResources(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        type {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        title
+        content
+        tags {
+          nextToken
+        }
+        user {
+          id
+          name
+          email
+          createdAt
+          updatedAt
+          communityAdminsId
+          communityMembersId
+          owner
+        }
+        community {
+          id
+          name
+          description
+          profile_image
+          banner_image
+          links
+          createdAt
+          updatedAt
+          userCommunitiesId
+        }
+        createdAt
+        updatedAt
+        userResourcesId
+        communityResourcesId
+        eventResourcesId
       }
       nextToken
     }

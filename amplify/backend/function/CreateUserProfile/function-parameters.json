@@ -1,4 +1,10 @@
 {
   "permissions": {},
-  "lambdaLayers": []
+  "lambdaLayers": [],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "apiPigeonzUsertableName",
+      "environmentVariableName": "API_pigeonz_USERTABLE_NAME"
+    }
+  ]
 }

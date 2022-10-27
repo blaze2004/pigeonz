@@ -73,6 +73,9 @@
               "userPoolConfig": {
                 "userPoolId": "authpigeonz800a52ea"
               }
+            },
+            {
+              "authenticationType": "AWS_IAM"
             }
           ]
         }

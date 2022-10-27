@@ -31,183 +31,6 @@ export const onDeleteCategory = /* GraphQL */ `
     }
   }
 `;
-export const onCreateEvent = /* GraphQL */ `
-  subscription OnCreateEvent($filter: ModelSubscriptionEventFilterInput) {
-    onCreateEvent(filter: $filter) {
-      id
-      name
-      banner_image
-      registration_link
-      resources {
-        items {
-          id
-          title
-          content
-          createdAt
-          updatedAt
-          userResourcesId
-          communityResourcesId
-          eventResourcesId
-        }
-        nextToken
-      }
-      community {
-        id
-        name
-        description
-        profile_image
-        banner_image
-        links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
-        admins {
-          nextToken
-        }
-        members {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        userCommunitiesId
-      }
-      createdAt
-      updatedAt
-      userEventsId
-      communityEventsId
-    }
-  }
-`;
-export const onUpdateEvent = /* GraphQL */ `
-  subscription OnUpdateEvent($filter: ModelSubscriptionEventFilterInput) {
-    onUpdateEvent(filter: $filter) {
-      id
-      name
-      banner_image
-      registration_link
-      resources {
-        items {
-          id
-          title
-          content
-          createdAt
-          updatedAt
-          userResourcesId
-          communityResourcesId
-          eventResourcesId
-        }
-        nextToken
-      }
-      community {
-        id
-        name
-        description
-        profile_image
-        banner_image
-        links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
-        admins {
-          nextToken
-        }
-        members {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        userCommunitiesId
-      }
-      createdAt
-      updatedAt
-      userEventsId
-      communityEventsId
-    }
-  }
-`;
-export const onDeleteEvent = /* GraphQL */ `
-  subscription OnDeleteEvent($filter: ModelSubscriptionEventFilterInput) {
-    onDeleteEvent(filter: $filter) {
-      id
-      name
-      banner_image
-      registration_link
-      resources {
-        items {
-          id
-          title
-          content
-          createdAt
-          updatedAt
-          userResourcesId
-          communityResourcesId
-          eventResourcesId
-        }
-        nextToken
-      }
-      community {
-        id
-        name
-        description
-        profile_image
-        banner_image
-        links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
-        admins {
-          nextToken
-        }
-        members {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        userCommunitiesId
-      }
-      createdAt
-      updatedAt
-      userEventsId
-      communityEventsId
-    }
-  }
-`;
 export const onCreateResourceType = /* GraphQL */ `
   subscription OnCreateResourceType(
     $filter: ModelSubscriptionResourceTypeFilterInput
@@ -241,261 +64,6 @@ export const onDeleteResourceType = /* GraphQL */ `
       name
       createdAt
       updatedAt
-    }
-  }
-`;
-export const onCreateResource = /* GraphQL */ `
-  subscription OnCreateResource($filter: ModelSubscriptionResourceFilterInput) {
-    onCreateResource(filter: $filter) {
-      id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      title
-      content
-      tags {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          resourceTagsId
-          owner
-        }
-        nextToken
-      }
-      user {
-        id
-        name
-        email
-        communities {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        communityAdminsId
-        communityMembersId
-        owner
-      }
-      community {
-        id
-        name
-        description
-        profile_image
-        banner_image
-        links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
-        admins {
-          nextToken
-        }
-        members {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        userCommunitiesId
-      }
-      createdAt
-      updatedAt
-      userResourcesId
-      communityResourcesId
-      eventResourcesId
-    }
-  }
-`;
-export const onUpdateResource = /* GraphQL */ `
-  subscription OnUpdateResource($filter: ModelSubscriptionResourceFilterInput) {
-    onUpdateResource(filter: $filter) {
-      id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      title
-      content
-      tags {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          resourceTagsId
-          owner
-        }
-        nextToken
-      }
-      user {
-        id
-        name
-        email
-        communities {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        communityAdminsId
-        communityMembersId
-        owner
-      }
-      community {
-        id
-        name
-        description
-        profile_image
-        banner_image
-        links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
-        admins {
-          nextToken
-        }
-        members {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        userCommunitiesId
-      }
-      createdAt
-      updatedAt
-      userResourcesId
-      communityResourcesId
-      eventResourcesId
-    }
-  }
-`;
-export const onDeleteResource = /* GraphQL */ `
-  subscription OnDeleteResource($filter: ModelSubscriptionResourceFilterInput) {
-    onDeleteResource(filter: $filter) {
-      id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      title
-      content
-      tags {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          resourceTagsId
-          owner
-        }
-        nextToken
-      }
-      user {
-        id
-        name
-        email
-        communities {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        communityAdminsId
-        communityMembersId
-        owner
-      }
-      community {
-        id
-        name
-        description
-        profile_image
-        banner_image
-        links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
-        admins {
-          nextToken
-        }
-        members {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        userCommunitiesId
-      }
-      createdAt
-      updatedAt
-      userResourcesId
-      communityResourcesId
-      eventResourcesId
     }
   }
 `;
@@ -1006,6 +574,438 @@ export const onDeleteTag = /* GraphQL */ `
       updatedAt
       resourceTagsId
       owner
+    }
+  }
+`;
+export const onCreateEvent = /* GraphQL */ `
+  subscription OnCreateEvent($filter: ModelSubscriptionEventFilterInput) {
+    onCreateEvent(filter: $filter) {
+      id
+      name
+      banner_image
+      registration_link
+      resources {
+        items {
+          id
+          title
+          content
+          createdAt
+          updatedAt
+          userResourcesId
+          communityResourcesId
+          eventResourcesId
+        }
+        nextToken
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        category {
+          id
+          title
+          createdAt
+          updatedAt
+        }
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userCommunitiesId
+      }
+      createdAt
+      updatedAt
+      userEventsId
+      communityEventsId
+    }
+  }
+`;
+export const onUpdateEvent = /* GraphQL */ `
+  subscription OnUpdateEvent($filter: ModelSubscriptionEventFilterInput) {
+    onUpdateEvent(filter: $filter) {
+      id
+      name
+      banner_image
+      registration_link
+      resources {
+        items {
+          id
+          title
+          content
+          createdAt
+          updatedAt
+          userResourcesId
+          communityResourcesId
+          eventResourcesId
+        }
+        nextToken
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        category {
+          id
+          title
+          createdAt
+          updatedAt
+        }
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userCommunitiesId
+      }
+      createdAt
+      updatedAt
+      userEventsId
+      communityEventsId
+    }
+  }
+`;
+export const onDeleteEvent = /* GraphQL */ `
+  subscription OnDeleteEvent($filter: ModelSubscriptionEventFilterInput) {
+    onDeleteEvent(filter: $filter) {
+      id
+      name
+      banner_image
+      registration_link
+      resources {
+        items {
+          id
+          title
+          content
+          createdAt
+          updatedAt
+          userResourcesId
+          communityResourcesId
+          eventResourcesId
+        }
+        nextToken
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        category {
+          id
+          title
+          createdAt
+          updatedAt
+        }
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userCommunitiesId
+      }
+      createdAt
+      updatedAt
+      userEventsId
+      communityEventsId
+    }
+  }
+`;
+export const onCreateResource = /* GraphQL */ `
+  subscription OnCreateResource($filter: ModelSubscriptionResourceFilterInput) {
+    onCreateResource(filter: $filter) {
+      id
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      title
+      content
+      tags {
+        items {
+          id
+          title
+          createdAt
+          updatedAt
+          resourceTagsId
+          owner
+        }
+        nextToken
+      }
+      user {
+        id
+        name
+        email
+        communities {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        communityAdminsId
+        communityMembersId
+        owner
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        category {
+          id
+          title
+          createdAt
+          updatedAt
+        }
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userCommunitiesId
+      }
+      createdAt
+      updatedAt
+      userResourcesId
+      communityResourcesId
+      eventResourcesId
+    }
+  }
+`;
+export const onUpdateResource = /* GraphQL */ `
+  subscription OnUpdateResource($filter: ModelSubscriptionResourceFilterInput) {
+    onUpdateResource(filter: $filter) {
+      id
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      title
+      content
+      tags {
+        items {
+          id
+          title
+          createdAt
+          updatedAt
+          resourceTagsId
+          owner
+        }
+        nextToken
+      }
+      user {
+        id
+        name
+        email
+        communities {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        communityAdminsId
+        communityMembersId
+        owner
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        category {
+          id
+          title
+          createdAt
+          updatedAt
+        }
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userCommunitiesId
+      }
+      createdAt
+      updatedAt
+      userResourcesId
+      communityResourcesId
+      eventResourcesId
+    }
+  }
+`;
+export const onDeleteResource = /* GraphQL */ `
+  subscription OnDeleteResource($filter: ModelSubscriptionResourceFilterInput) {
+    onDeleteResource(filter: $filter) {
+      id
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      title
+      content
+      tags {
+        items {
+          id
+          title
+          createdAt
+          updatedAt
+          resourceTagsId
+          owner
+        }
+        nextToken
+      }
+      user {
+        id
+        name
+        email
+        communities {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        communityAdminsId
+        communityMembersId
+        owner
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        category {
+          id
+          title
+          createdAt
+          updatedAt
+        }
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userCommunitiesId
+      }
+      createdAt
+      updatedAt
+      userResourcesId
+      communityResourcesId
+      eventResourcesId
     }
   }
 `;

@@ -40,222 +40,6 @@ export const deleteCategory = /* GraphQL */ `
     }
   }
 `;
-export const updateTag = /* GraphQL */ `
-  mutation UpdateTag(
-    $input: UpdateTagInput!
-    $condition: ModelTagConditionInput
-  ) {
-    updateTag(input: $input, condition: $condition) {
-      id
-      title
-      createdAt
-      updatedAt
-      resourceTagsId
-      owner
-    }
-  }
-`;
-export const deleteTag = /* GraphQL */ `
-  mutation DeleteTag(
-    $input: DeleteTagInput!
-    $condition: ModelTagConditionInput
-  ) {
-    deleteTag(input: $input, condition: $condition) {
-      id
-      title
-      createdAt
-      updatedAt
-      resourceTagsId
-      owner
-    }
-  }
-`;
-export const createEvent = /* GraphQL */ `
-  mutation CreateEvent(
-    $input: CreateEventInput!
-    $condition: ModelEventConditionInput
-  ) {
-    createEvent(input: $input, condition: $condition) {
-      id
-      name
-      banner_image
-      registration_link
-      resources {
-        items {
-          id
-          title
-          content
-          createdAt
-          updatedAt
-          userResourcesId
-          communityResourcesId
-          eventResourcesId
-        }
-        nextToken
-      }
-      community {
-        id
-        name
-        description
-        profile_image
-        banner_image
-        links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
-        admins {
-          nextToken
-        }
-        members {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        userCommunitiesId
-      }
-      createdAt
-      updatedAt
-      userEventsId
-      communityEventsId
-    }
-  }
-`;
-export const updateEvent = /* GraphQL */ `
-  mutation UpdateEvent(
-    $input: UpdateEventInput!
-    $condition: ModelEventConditionInput
-  ) {
-    updateEvent(input: $input, condition: $condition) {
-      id
-      name
-      banner_image
-      registration_link
-      resources {
-        items {
-          id
-          title
-          content
-          createdAt
-          updatedAt
-          userResourcesId
-          communityResourcesId
-          eventResourcesId
-        }
-        nextToken
-      }
-      community {
-        id
-        name
-        description
-        profile_image
-        banner_image
-        links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
-        admins {
-          nextToken
-        }
-        members {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        userCommunitiesId
-      }
-      createdAt
-      updatedAt
-      userEventsId
-      communityEventsId
-    }
-  }
-`;
-export const deleteEvent = /* GraphQL */ `
-  mutation DeleteEvent(
-    $input: DeleteEventInput!
-    $condition: ModelEventConditionInput
-  ) {
-    deleteEvent(input: $input, condition: $condition) {
-      id
-      name
-      banner_image
-      registration_link
-      resources {
-        items {
-          id
-          title
-          content
-          createdAt
-          updatedAt
-          userResourcesId
-          communityResourcesId
-          eventResourcesId
-        }
-        nextToken
-      }
-      community {
-        id
-        name
-        description
-        profile_image
-        banner_image
-        links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
-        admins {
-          nextToken
-        }
-        members {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        userCommunitiesId
-      }
-      createdAt
-      updatedAt
-      userEventsId
-      communityEventsId
-    }
-  }
-`;
 export const createResourceType = /* GraphQL */ `
   mutation CreateResourceType(
     $input: CreateResourceTypeInput!
@@ -292,270 +76,6 @@ export const deleteResourceType = /* GraphQL */ `
       name
       createdAt
       updatedAt
-    }
-  }
-`;
-export const createResource = /* GraphQL */ `
-  mutation CreateResource(
-    $input: CreateResourceInput!
-    $condition: ModelResourceConditionInput
-  ) {
-    createResource(input: $input, condition: $condition) {
-      id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      title
-      content
-      tags {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          resourceTagsId
-          owner
-        }
-        nextToken
-      }
-      user {
-        id
-        name
-        email
-        communities {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        communityAdminsId
-        communityMembersId
-        owner
-      }
-      community {
-        id
-        name
-        description
-        profile_image
-        banner_image
-        links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
-        admins {
-          nextToken
-        }
-        members {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        userCommunitiesId
-      }
-      createdAt
-      updatedAt
-      userResourcesId
-      communityResourcesId
-      eventResourcesId
-    }
-  }
-`;
-export const updateResource = /* GraphQL */ `
-  mutation UpdateResource(
-    $input: UpdateResourceInput!
-    $condition: ModelResourceConditionInput
-  ) {
-    updateResource(input: $input, condition: $condition) {
-      id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      title
-      content
-      tags {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          resourceTagsId
-          owner
-        }
-        nextToken
-      }
-      user {
-        id
-        name
-        email
-        communities {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        communityAdminsId
-        communityMembersId
-        owner
-      }
-      community {
-        id
-        name
-        description
-        profile_image
-        banner_image
-        links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
-        admins {
-          nextToken
-        }
-        members {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        userCommunitiesId
-      }
-      createdAt
-      updatedAt
-      userResourcesId
-      communityResourcesId
-      eventResourcesId
-    }
-  }
-`;
-export const deleteResource = /* GraphQL */ `
-  mutation DeleteResource(
-    $input: DeleteResourceInput!
-    $condition: ModelResourceConditionInput
-  ) {
-    deleteResource(input: $input, condition: $condition) {
-      id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      title
-      content
-      tags {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          resourceTagsId
-          owner
-        }
-        nextToken
-      }
-      user {
-        id
-        name
-        email
-        communities {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        communityAdminsId
-        communityMembersId
-        owner
-      }
-      community {
-        id
-        name
-        description
-        profile_image
-        banner_image
-        links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
-        admins {
-          nextToken
-        }
-        members {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-        resources {
-          nextToken
-        }
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        userCommunitiesId
-      }
-      createdAt
-      updatedAt
-      userResourcesId
-      communityResourcesId
-      eventResourcesId
     }
   }
 `;
@@ -1036,6 +556,486 @@ export const createTag = /* GraphQL */ `
       updatedAt
       resourceTagsId
       owner
+    }
+  }
+`;
+export const updateTag = /* GraphQL */ `
+  mutation UpdateTag(
+    $input: UpdateTagInput!
+    $condition: ModelTagConditionInput
+  ) {
+    updateTag(input: $input, condition: $condition) {
+      id
+      title
+      createdAt
+      updatedAt
+      resourceTagsId
+      owner
+    }
+  }
+`;
+export const deleteTag = /* GraphQL */ `
+  mutation DeleteTag(
+    $input: DeleteTagInput!
+    $condition: ModelTagConditionInput
+  ) {
+    deleteTag(input: $input, condition: $condition) {
+      id
+      title
+      createdAt
+      updatedAt
+      resourceTagsId
+      owner
+    }
+  }
+`;
+export const createEvent = /* GraphQL */ `
+  mutation CreateEvent(
+    $input: CreateEventInput!
+    $condition: ModelEventConditionInput
+  ) {
+    createEvent(input: $input, condition: $condition) {
+      id
+      name
+      banner_image
+      registration_link
+      resources {
+        items {
+          id
+          title
+          content
+          createdAt
+          updatedAt
+          userResourcesId
+          communityResourcesId
+          eventResourcesId
+        }
+        nextToken
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        category {
+          id
+          title
+          createdAt
+          updatedAt
+        }
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userCommunitiesId
+      }
+      createdAt
+      updatedAt
+      userEventsId
+      communityEventsId
+    }
+  }
+`;
+export const updateEvent = /* GraphQL */ `
+  mutation UpdateEvent(
+    $input: UpdateEventInput!
+    $condition: ModelEventConditionInput
+  ) {
+    updateEvent(input: $input, condition: $condition) {
+      id
+      name
+      banner_image
+      registration_link
+      resources {
+        items {
+          id
+          title
+          content
+          createdAt
+          updatedAt
+          userResourcesId
+          communityResourcesId
+          eventResourcesId
+        }
+        nextToken
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        category {
+          id
+          title
+          createdAt
+          updatedAt
+        }
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userCommunitiesId
+      }
+      createdAt
+      updatedAt
+      userEventsId
+      communityEventsId
+    }
+  }
+`;
+export const deleteEvent = /* GraphQL */ `
+  mutation DeleteEvent(
+    $input: DeleteEventInput!
+    $condition: ModelEventConditionInput
+  ) {
+    deleteEvent(input: $input, condition: $condition) {
+      id
+      name
+      banner_image
+      registration_link
+      resources {
+        items {
+          id
+          title
+          content
+          createdAt
+          updatedAt
+          userResourcesId
+          communityResourcesId
+          eventResourcesId
+        }
+        nextToken
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        category {
+          id
+          title
+          createdAt
+          updatedAt
+        }
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userCommunitiesId
+      }
+      createdAt
+      updatedAt
+      userEventsId
+      communityEventsId
+    }
+  }
+`;
+export const createResource = /* GraphQL */ `
+  mutation CreateResource(
+    $input: CreateResourceInput!
+    $condition: ModelResourceConditionInput
+  ) {
+    createResource(input: $input, condition: $condition) {
+      id
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      title
+      content
+      tags {
+        items {
+          id
+          title
+          createdAt
+          updatedAt
+          resourceTagsId
+          owner
+        }
+        nextToken
+      }
+      user {
+        id
+        name
+        email
+        communities {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        communityAdminsId
+        communityMembersId
+        owner
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        category {
+          id
+          title
+          createdAt
+          updatedAt
+        }
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userCommunitiesId
+      }
+      createdAt
+      updatedAt
+      userResourcesId
+      communityResourcesId
+      eventResourcesId
+    }
+  }
+`;
+export const updateResource = /* GraphQL */ `
+  mutation UpdateResource(
+    $input: UpdateResourceInput!
+    $condition: ModelResourceConditionInput
+  ) {
+    updateResource(input: $input, condition: $condition) {
+      id
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      title
+      content
+      tags {
+        items {
+          id
+          title
+          createdAt
+          updatedAt
+          resourceTagsId
+          owner
+        }
+        nextToken
+      }
+      user {
+        id
+        name
+        email
+        communities {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        communityAdminsId
+        communityMembersId
+        owner
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        category {
+          id
+          title
+          createdAt
+          updatedAt
+        }
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userCommunitiesId
+      }
+      createdAt
+      updatedAt
+      userResourcesId
+      communityResourcesId
+      eventResourcesId
+    }
+  }
+`;
+export const deleteResource = /* GraphQL */ `
+  mutation DeleteResource(
+    $input: DeleteResourceInput!
+    $condition: ModelResourceConditionInput
+  ) {
+    deleteResource(input: $input, condition: $condition) {
+      id
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      title
+      content
+      tags {
+        items {
+          id
+          title
+          createdAt
+          updatedAt
+          resourceTagsId
+          owner
+        }
+        nextToken
+      }
+      user {
+        id
+        name
+        email
+        communities {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        communityAdminsId
+        communityMembersId
+        owner
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        category {
+          id
+          title
+          createdAt
+          updatedAt
+        }
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userCommunitiesId
+      }
+      createdAt
+      updatedAt
+      userResourcesId
+      communityResourcesId
+      eventResourcesId
     }
   }
 `;
