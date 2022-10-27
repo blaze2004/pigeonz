@@ -1,9 +1,0 @@
-.sidenavbarContainer {
-    display: hidden;
-}
-
-@media screen and (min-width: 1024px)  {
-    .sidenavbarContainer {
-        display: block;
-    }
-}

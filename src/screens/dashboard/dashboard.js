@@ -1,9 +1,9 @@
-import { Heading } from '@aws-amplify/ui-react';
+import { View } from '@aws-amplify/ui-react';
 
 export function Dashboard() {
   return (
-    <Heading level={3}>
-      PigeonZ Dashboard
-    </Heading>
+    <View as="div" padding="5px">
+      
+    </View>
   );
 }

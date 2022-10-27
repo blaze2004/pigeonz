@@ -37,7 +37,9 @@ function MyRoutes() {
           <Route path="auth" element={<Login />} />
 
         </Route>
-
+        
+        {/* <Route path="/communities">
+        </Route> */}
       </Routes>
     </BrowserRouter>
   );

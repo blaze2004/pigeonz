@@ -5,8 +5,11 @@ import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import { grey } from '@mui/material/colors';
 import { Routes } from '../../values/routes';
-import { CalendarMonthOutlined, SettingsOutlined, DashboardOutlined, EventSeatOutlined, HelpOutline } from "@mui/icons-material";
+import { CalendarMonthOutlined, SettingsOutlined, DashboardOutlined, EventSeatOutlined, HelpOutline, LogoutOutlined } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
 
 function stringToColor(string) {
     let hash=0;
@@ -61,14 +64,26 @@ function ExtendedButton(props) {
 
     return (
         <>
-            <ColorButton variant="text" startIcon={props.children} onClick={() => navigate(route)}>{props.title||"Text"}</ColorButton>
-            <Divider orientation="horizontal" color={buttonColor} />
+            <ColorButton startIcon={props.children} onClick={() => navigate(route)}>{props.title||"Text"}</ColorButton>
+            <Divider border={`1px solid ${buttonColor}`} orientation="horizontal"/>
         </>
     );
 }
 
-export default function SideNavBar() {
+export default function SideNavBar(props) {
+
+    const [anchorEl, setAnchorEl]=React.useState(null);
+    const open=Boolean(anchorEl);
+
+    const handleClick=(event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose=() => {
+        setAnchorEl(null);
+    };
+
     let name="Blaze2004";
+
     return (
         <Flex
             height="100%"
@@ -102,21 +117,45 @@ export default function SideNavBar() {
                         <HelpOutline />
                     </ExtendedButton>
 
-                </Flex></View>
-            <Flex
-                direction={"row"}
-                borderRadius="12px"
-                border={"1px solid #fff"}
-                backgroundColor="#2a2d3e"
-                height="58px"
-                justifyContent={"space-around"}
-                alignItems="center"
-                padding={"1rem"}
-                margin="5px"
+                </Flex>
+            </View>
+            <Button
+                onClick={handleClick}
+                aria-controls={open? 'account-menu':undefined}
+                aria-haspopup="true"
+                aria-expanded={open? 'true':undefined}
             >
-                <Text color={"#fff"}>{name}</Text>
-                <Avatar {...stringAvatar(name)} />
-            </Flex>
+                <Flex
+                    direction={"row"}
+                    borderRadius="12px"
+                    border={"1px solid #fff"}
+                    backgroundColor="#2a2d3e"
+                    height="58px"
+                    justifyContent={"space-between"}
+                    alignItems="center"
+                    padding={"1rem"}
+                >
+                    <Text color={"#fff"}>{name}</Text>
+                    <Avatar {...stringAvatar(name)} />
+                </Flex>
+            </Button>
+
+            <Menu
+                anchorEl={anchorEl}
+                id="account-menu"
+                open={open}
+                onClose={handleClose}
+                onClick={handleClose}
+                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+            >
+                <MenuItem onClick={props.onlogOut}>
+                    <ListItemIcon>
+                        <LogoutOutlined fontSize="small" />
+                    </ListItemIcon>
+                    Logout
+                </MenuItem>
+            </Menu>
 
         </Flex>
     );
