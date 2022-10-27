@@ -1,6 +1,36 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateCategory = /* GraphQL */ `
+  subscription OnCreateCategory($filter: ModelSubscriptionCategoryFilterInput) {
+    onCreateCategory(filter: $filter) {
+      id
+      title
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateCategory = /* GraphQL */ `
+  subscription OnUpdateCategory($filter: ModelSubscriptionCategoryFilterInput) {
+    onUpdateCategory(filter: $filter) {
+      id
+      title
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteCategory = /* GraphQL */ `
+  subscription OnDeleteCategory($filter: ModelSubscriptionCategoryFilterInput) {
+    onDeleteCategory(filter: $filter) {
+      id
+      title
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateEvent = /* GraphQL */ `
   subscription OnCreateEvent($filter: ModelSubscriptionEventFilterInput) {
     onCreateEvent(filter: $filter) {
@@ -33,7 +63,6 @@ export const onCreateEvent = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -93,7 +122,6 @@ export const onUpdateEvent = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -153,7 +181,6 @@ export const onDeleteEvent = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -274,7 +301,6 @@ export const onCreateResource = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -360,7 +386,6 @@ export const onUpdateResource = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -446,7 +471,6 @@ export const onDeleteResource = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -696,7 +720,6 @@ export const onCreateCommunity = /* GraphQL */ `
         title
         createdAt
         updatedAt
-        owner
       }
       admins {
         items {
@@ -784,7 +807,6 @@ export const onUpdateCommunity = /* GraphQL */ `
         title
         createdAt
         updatedAt
-        owner
       }
       admins {
         items {
@@ -872,7 +894,6 @@ export const onDeleteCommunity = /* GraphQL */ `
         title
         createdAt
         updatedAt
-        owner
       }
       admins {
         items {
@@ -940,48 +961,6 @@ export const onDeleteCommunity = /* GraphQL */ `
       createdAt
       updatedAt
       userCommunitiesId
-    }
-  }
-`;
-export const onCreateCategory = /* GraphQL */ `
-  subscription OnCreateCategory(
-    $filter: ModelSubscriptionCategoryFilterInput
-    $owner: String
-  ) {
-    onCreateCategory(filter: $filter, owner: $owner) {
-      id
-      title
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onUpdateCategory = /* GraphQL */ `
-  subscription OnUpdateCategory(
-    $filter: ModelSubscriptionCategoryFilterInput
-    $owner: String
-  ) {
-    onUpdateCategory(filter: $filter, owner: $owner) {
-      id
-      title
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onDeleteCategory = /* GraphQL */ `
-  subscription OnDeleteCategory(
-    $filter: ModelSubscriptionCategoryFilterInput
-    $owner: String
-  ) {
-    onDeleteCategory(filter: $filter, owner: $owner) {
-      id
-      title
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
@@ -1072,7 +1051,6 @@ export const onCreatePost = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -1142,7 +1120,6 @@ export const onUpdatePost = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -1212,7 +1189,6 @@ export const onDeletePost = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken

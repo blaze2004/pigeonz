@@ -1,6 +1,19 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createCategory = /* GraphQL */ `
+  mutation CreateCategory(
+    $input: CreateCategoryInput!
+    $condition: ModelCategoryConditionInput
+  ) {
+    createCategory(input: $input, condition: $condition) {
+      id
+      title
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const updateCategory = /* GraphQL */ `
   mutation UpdateCategory(
     $input: UpdateCategoryInput!
@@ -11,7 +24,6 @@ export const updateCategory = /* GraphQL */ `
       title
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -25,7 +37,6 @@ export const deleteCategory = /* GraphQL */ `
       title
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -94,7 +105,6 @@ export const createEvent = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -157,7 +167,6 @@ export const updateEvent = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -220,7 +229,6 @@ export const deleteEvent = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -347,7 +355,6 @@ export const createResource = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -436,7 +443,6 @@ export const updateResource = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -525,7 +531,6 @@ export const deleteResource = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -775,7 +780,6 @@ export const createCommunity = /* GraphQL */ `
         title
         createdAt
         updatedAt
-        owner
       }
       admins {
         items {
@@ -863,7 +867,6 @@ export const updateCommunity = /* GraphQL */ `
         title
         createdAt
         updatedAt
-        owner
       }
       admins {
         items {
@@ -951,7 +954,6 @@ export const deleteCommunity = /* GraphQL */ `
         title
         createdAt
         updatedAt
-        owner
       }
       admins {
         items {
@@ -1022,20 +1024,6 @@ export const deleteCommunity = /* GraphQL */ `
     }
   }
 `;
-export const createCategory = /* GraphQL */ `
-  mutation CreateCategory(
-    $input: CreateCategoryInput!
-    $condition: ModelCategoryConditionInput
-  ) {
-    createCategory(input: $input, condition: $condition) {
-      id
-      title
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
 export const createTag = /* GraphQL */ `
   mutation CreateTag(
     $input: CreateTagInput!
@@ -1093,7 +1081,6 @@ export const createPost = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -1163,7 +1150,6 @@ export const updatePost = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -1233,7 +1219,6 @@ export const deletePost = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken

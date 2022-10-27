@@ -27,7 +27,7 @@
         },
         "CreateUserProfile": {
           "deploymentBucketName": "amplify-pigeonz-dev-172829-deployment",
-          "s3Key": "amplify-builds/CreateUserProfile-4c69323449354a6f4a61-build.zip"
+          "s3Key": "amplify-builds/CreateUserProfile-7437374172624a316d7a-build.zip"
         }
       },
       "api": {

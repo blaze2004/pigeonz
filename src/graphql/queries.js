@@ -1,6 +1,33 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getCategory = /* GraphQL */ `
+  query GetCategory($id: ID!) {
+    getCategory(id: $id) {
+      id
+      title
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listCategories = /* GraphQL */ `
+  query ListCategories(
+    $filter: ModelCategoryFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCategories(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        title
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const getEvent = /* GraphQL */ `
   query GetEvent($id: ID!) {
     getEvent(id: $id) {
@@ -33,7 +60,6 @@ export const getEvent = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -180,7 +206,6 @@ export const getResource = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -372,7 +397,6 @@ export const getCommunity = /* GraphQL */ `
         title
         createdAt
         updatedAt
-        owner
       }
       admins {
         items {
@@ -462,7 +486,6 @@ export const listCommunities = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken
@@ -482,35 +505,6 @@ export const listCommunities = /* GraphQL */ `
         createdAt
         updatedAt
         userCommunitiesId
-      }
-      nextToken
-    }
-  }
-`;
-export const getCategory = /* GraphQL */ `
-  query GetCategory($id: ID!) {
-    getCategory(id: $id) {
-      id
-      title
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const listCategories = /* GraphQL */ `
-  query ListCategories(
-    $filter: ModelCategoryFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listCategories(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        title
-        createdAt
-        updatedAt
-        owner
       }
       nextToken
     }
@@ -586,7 +580,6 @@ export const getPost = /* GraphQL */ `
           title
           createdAt
           updatedAt
-          owner
         }
         admins {
           nextToken

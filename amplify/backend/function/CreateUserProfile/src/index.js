@@ -6,7 +6,7 @@ Amplify Params - DO NOT EDIT */
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
- import { DynamoDB } from 'aws-sdk';
+ var aws = require('aws-sdk');
  var ddb = new DynamoDB();
  
  export async function  handler(event, context) {

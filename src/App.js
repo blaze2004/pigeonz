@@ -7,7 +7,10 @@ import { Home } from './screens/home/home';
 import { Dashboard } from './screens/dashboard/dashboard';
 import { BaseLayout } from './screens/base/base';
 
-import { BrowserRouter, Routes, Route,} from 'react-router-dom';
+// Community pages
+import ExploreCommunities from './screens/community/explore';
+
+import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 
 import './App.css';
 
@@ -37,9 +40,10 @@ function MyRoutes() {
           <Route path="auth" element={<Login />} />
 
         </Route>
-        
-        {/* <Route path="/communities">
-        </Route> */}
+
+        <Route path="/communities">
+          <Route index element={<ExploreCommunities />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
