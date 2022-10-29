@@ -5,3 +5,27 @@
 .explore-communities-search {
     background-image: linear-gradient(to right, #72306a, #6e3275, #663580, #5b398b, #4b3e96);
 }
+
+.communities-list {
+    display: grid;
+    gap: 30px;
+    padding: 20px 80px;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+@media screen and (min-width: 768px){
+    .communities-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1080px) {
+    .communities-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (min-width: 1280px) {
+    .communities-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

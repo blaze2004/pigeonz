@@ -4,7 +4,7 @@ import {
 } from '@aws-amplify/ui-react';
 import { Routes } from '../../values/routes';
 import { useNavigate } from 'react-router-dom';
-import { Card, CardContent, CardActionArea, Grid } from '@mui/material';
+import { Card, CardContent, CardActionArea } from '@mui/material';
 import { Group } from '@mui/icons-material';
 import { Header } from './common';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -18,7 +18,7 @@ function CommunityCard(props) {
     return (
         <Card sx={{ maxWidth: 345, backgroundColor: "#2c2c2c", borderRadius: "1rem" }}>
             <CardActionArea>
-                <CardContent onClick={()=>navigate(`${Routes.get("Explore")}/${props.title}`)}>
+                <CardContent onClick={() => navigate(`${Routes.get("Explore")}/${props.title}`)}>
                     <Image
                         height="64px"
                         width="64px"
@@ -111,20 +111,18 @@ function ExploreCommunities() {
 
             <Flex width="98%" margin="1%" direction="column">
                 <Heading level={3} fontWeight="bold" color="#fff">Featured Communities</Heading>
-                <Grid container justifyContent="center" spacing={2} padding="20px">
+                <View as="div" className="communities-list">
                     {
                         communities.map((item, index) => (
-                            <Grid xs={12} lg={3} sm={6} md={5} key={index}>
-                                <CommunityCard
-                                    image={item.image}
-                                    title={item.title}
-                                    description={item.description}
-                                    membersCount={item.membersCount}
-                                />
-                            </Grid>
+                            <CommunityCard
+                                image={item.image}
+                                title={item.title}
+                                description={item.description}
+                                membersCount={item.membersCount}
+                            />
                         ))
                     }
-                </Grid>
+                </View>
             </Flex>
 
         </View>
