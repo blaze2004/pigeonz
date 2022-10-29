@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Avatar, CssBaseline, Button, IconButton } from '@mui/material';
 import { stringAvatar } from '../components/avatar';
 import { View, Flex, Text, Heading, TabItem, Tabs } from '@aws-amplify/ui-react';
-import { CalendarTodayOutlined, CategoryOutlined, Group } from '@mui/icons-material';
+import { CalendarTodayOutlined, CategoryOutlined, Group, LinkOutlined } from '@mui/icons-material';
 
 // for testing only
 import image from '../../assets/nft.png';
@@ -66,12 +66,15 @@ function PostsTab(props) {
 }
 
 function Links(props) {
+
     return (
         <Flex alignItems={"center"} paddingTop="20px">
             {
                 props.links.map((link, _) => (
                     <IconButton href={link}>
-                        <Avatar {...stringAvatar(link)} />
+                        <Avatar>
+                            <LinkOutlined />
+                        </Avatar>
                     </IconButton>
                 ))
             }
@@ -114,9 +117,8 @@ function Community() {
             "Miles Morales"
         ],
         links: [
-            "https://slack.com/dev",
-            "https://discord.com/dev",
-            "https://link.me/dev",
+            "https://slack.com/",
+            "https://discord.com/",
         ],
         posts: [
             {
@@ -176,7 +178,7 @@ function Community() {
         color: #1976d2;
         }
         `
-    )
+    );
     return (
         <View as="div"
             width="100%"
