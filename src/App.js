@@ -6,6 +6,7 @@ import { Login } from './screens/components/login';
 import { Home } from './screens/home/home';
 import { Dashboard } from './screens/dashboard/dashboard';
 import { BaseLayout } from './screens/base/base';
+import Community from './screens/community/community';
 
 // Community pages
 import ExploreCommunities from './screens/community/explore';
@@ -43,6 +44,7 @@ function MyRoutes() {
 
         <Route path="/communities">
           <Route index element={<ExploreCommunities />} />
+          <Route path=":communityName" element={ <Community />} />
         </Route>
       </Routes>
     </BrowserRouter>

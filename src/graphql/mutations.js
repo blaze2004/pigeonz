@@ -555,7 +555,6 @@ export const createTag = /* GraphQL */ `
       createdAt
       updatedAt
       resourceTagsId
-      owner
     }
   }
 `;
@@ -570,7 +569,6 @@ export const updateTag = /* GraphQL */ `
       createdAt
       updatedAt
       resourceTagsId
-      owner
     }
   }
 `;
@@ -585,7 +583,6 @@ export const deleteTag = /* GraphQL */ `
       createdAt
       updatedAt
       resourceTagsId
-      owner
     }
   }
 `;
@@ -797,7 +794,6 @@ export const createResource = /* GraphQL */ `
           createdAt
           updatedAt
           resourceTagsId
-          owner
         }
         nextToken
       }
@@ -885,7 +881,6 @@ export const updateResource = /* GraphQL */ `
           createdAt
           updatedAt
           resourceTagsId
-          owner
         }
         nextToken
       }
@@ -973,7 +968,6 @@ export const deleteResource = /* GraphQL */ `
           createdAt
           updatedAt
           resourceTagsId
-          owner
         }
         nextToken
       }

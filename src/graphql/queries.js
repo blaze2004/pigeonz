@@ -288,7 +288,6 @@ export const getTag = /* GraphQL */ `
       createdAt
       updatedAt
       resourceTagsId
-      owner
     }
   }
 `;
@@ -305,7 +304,6 @@ export const listTags = /* GraphQL */ `
         createdAt
         updatedAt
         resourceTagsId
-        owner
       }
       nextToken
     }
@@ -424,7 +422,6 @@ export const getResource = /* GraphQL */ `
           createdAt
           updatedAt
           resourceTagsId
-          owner
         }
         nextToken
       }

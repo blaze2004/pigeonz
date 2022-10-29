@@ -533,47 +533,35 @@ export const onDeleteCommunity = /* GraphQL */ `
   }
 `;
 export const onCreateTag = /* GraphQL */ `
-  subscription OnCreateTag(
-    $filter: ModelSubscriptionTagFilterInput
-    $owner: String
-  ) {
-    onCreateTag(filter: $filter, owner: $owner) {
+  subscription OnCreateTag($filter: ModelSubscriptionTagFilterInput) {
+    onCreateTag(filter: $filter) {
       id
       title
       createdAt
       updatedAt
       resourceTagsId
-      owner
     }
   }
 `;
 export const onUpdateTag = /* GraphQL */ `
-  subscription OnUpdateTag(
-    $filter: ModelSubscriptionTagFilterInput
-    $owner: String
-  ) {
-    onUpdateTag(filter: $filter, owner: $owner) {
+  subscription OnUpdateTag($filter: ModelSubscriptionTagFilterInput) {
+    onUpdateTag(filter: $filter) {
       id
       title
       createdAt
       updatedAt
       resourceTagsId
-      owner
     }
   }
 `;
 export const onDeleteTag = /* GraphQL */ `
-  subscription OnDeleteTag(
-    $filter: ModelSubscriptionTagFilterInput
-    $owner: String
-  ) {
-    onDeleteTag(filter: $filter, owner: $owner) {
+  subscription OnDeleteTag($filter: ModelSubscriptionTagFilterInput) {
+    onDeleteTag(filter: $filter) {
       id
       title
       createdAt
       updatedAt
       resourceTagsId
-      owner
     }
   }
 `;
@@ -773,7 +761,6 @@ export const onCreateResource = /* GraphQL */ `
           createdAt
           updatedAt
           resourceTagsId
-          owner
         }
         nextToken
       }
@@ -858,7 +845,6 @@ export const onUpdateResource = /* GraphQL */ `
           createdAt
           updatedAt
           resourceTagsId
-          owner
         }
         nextToken
       }
@@ -943,7 +929,6 @@ export const onDeleteResource = /* GraphQL */ `
           createdAt
           updatedAt
           resourceTagsId
-          owner
         }
         nextToken
       }
