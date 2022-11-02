@@ -18,11 +18,7 @@
       "function": {
         "CreateUserProfile": {
           "deploymentBucketName": "amplify-pigeonz-dev-202009-deployment",
-          "s3Key": "amplify-builds/CreateUserProfile-33534255474b4239322f-build.zip"
-        },
-        "CustomEmailMessage": {
-          "deploymentBucketName": "amplify-pigeonz-dev-202009-deployment",
-          "s3Key": "amplify-builds/CustomEmailMessage-61442b5775686a576234-build.zip"
+          "s3Key": "amplify-builds/CreateUserProfile-45486b73795852435674-build.zip"
         }
       },
       "api": {

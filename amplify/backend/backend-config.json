@@ -16,7 +16,12 @@
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
-          "passwordPolicyCharacters": []
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_SYMBOLS",
+            "REQUIRES_UPPERCASE"
+          ]
         },
         "mfaConfiguration": "OFF",
         "mfaTypes": [
@@ -77,20 +82,6 @@
           "resourceName": "pigeonz",
           "attributes": [
             "GraphQLAPIIdOutput"
-          ]
-        }
-      ]
-    },
-    "CustomEmailMessage": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "auth",
-          "resourceName": "pigeonz607aaeab",
-          "attributes": [
-            "UserPoolId"
           ]
         }
       ]
