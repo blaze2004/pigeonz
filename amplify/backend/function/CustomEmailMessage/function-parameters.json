@@ -1,7 +1,7 @@
 {
   "permissions": {
-    "storage": {
-      "User:@model(appsync)": [
+    "auth": {
+      "pigeonz607aaeab": [
         "create",
         "read",
         "update",
