@@ -1,50 +1,47 @@
 import { Authenticator } from '@aws-amplify/ui-react';
-
-import { ScheduleScreen } from './screens/schedule/schedule';
-import { RequireAuth } from './screens/components/require_auth';
-import { Login } from './screens/components/login';
-import { Home } from './screens/home/home';
-import { Dashboard } from './screens/dashboard/dashboard';
-import { BaseLayout } from './screens/base/base';
-import Community from './screens/community/community';
-
-// Community pages
-import ExploreCommunities from './screens/community/explore';
-
-import { BrowserRouter, Routes, Route, } from 'react-router-dom';
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import { Community, ExploreCommunities, Resource } from './screens/community';
+import { BaseLayout, Dashboard, Home, Login, RequireAuth } from './screens/screens';
 
 function MyRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        {/* app routes */}
-        <Route path="/app">
+        <Route path="/" element={<BaseLayout />}>
+          <Route index element={<Home />} />
 
-          <Route path='' element={
-            <RequireAuth>
-              <BaseLayout />
-            </RequireAuth>
-          }>
-            <Route index
-              element={<Dashboard />}
-            />
+          <Route path="app">
 
-            <Route
-              path="schedule"
-              element={<ScheduleScreen />}
-            />
+            <Route path=''>
+              <Route index
+                element={
+                  <RequireAuth>
+                    <Dashboard />
+                  </RequireAuth>
+                }
+              />
+            </Route>
+
+            <Route path="auth" element={<Login />} />
+
           </Route>
 
-          <Route path="auth" element={<Login />} />
-
-        </Route>
-
-        <Route path="/communities">
-          <Route index element={<ExploreCommunities />} />
-          <Route path=":communityName" element={ <Community />} />
+          <Route path="communities">
+            <Route index element={<ExploreCommunities />} />
+            <Route path=":communityName">
+              <Route index element={<Community />} />
+              <Route path="resources/:resourceID">
+                <Route index element={<Resource />} />
+                <Route
+                  path="edit"
+                  element={
+                    <Resource edit={true} />
+                  }
+                />
+              </Route>
+            </Route>
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
