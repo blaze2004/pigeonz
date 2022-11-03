@@ -4,9 +4,9 @@ import { Slate, Editable, withReact } from 'slate-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Header, LinkCopiedSnackbar, PeopleCard, Popup, titleCase } from './common';
 import { useParams } from 'react-router-dom';
-import { Avatar, CssBaseline, Button, IconButton, TextField, Card, CardContent, CardActionArea } from '@mui/material';
+import { Avatar, CssBaseline, Button, IconButton, TextField, Card, CardContent, CardActionArea, DialogActions } from '@mui/material';
 import { View, Flex, Text, Heading, TabItem, Tabs, Divider } from '@aws-amplify/ui-react';
-import { CalendarTodayOutlined, CategoryOutlined, Group, LinkOutlined, Event } from '@mui/icons-material';
+import { CalendarTodayOutlined, Group, LinkOutlined, Event } from '@mui/icons-material';
 import { host, Routes } from '../../values/routes';
 import { AmplifyS3ImagePicker } from '@aws-amplify/ui-react/legacy';
 // for testing only
@@ -147,9 +147,6 @@ function ResourcesTab(props) {
             </View>
             <Popup
                 open={open}
-                setOpen={setOpen}
-                handleClose={handleClose}
-                handlePost={handlePost}
                 title={"New Resource"}
             >
                 <Flex minWidth={"500px"} minHeight="700px" border={"1px solid #f8f8f9"}>
@@ -157,6 +154,10 @@ function ResourcesTab(props) {
                         <TextEditor editor={editor} readOnly={false} />
                     </Slate>
                 </Flex>
+                <DialogActions>
+                <Button variant="text" onClick={handleClose}>Discard</Button>
+                <Button variant="contained" borderRadius="2rem" onClick={handlePost}>Publish</Button>
+            </DialogActions>
             </Popup>
         </Flex>
     );
@@ -216,9 +217,6 @@ function EventsTab(props) {
             }
             <Popup
                 open={open}
-                setOpen={setOpen}
-                handleClose={handleClose}
-                handlePost={handlePost}
                 title={"New Event"}
             >
                 <Flex direction="column" minWidth={"500px"} minHeight="700px" justifyContent={"center"}>
@@ -228,6 +226,10 @@ function EventsTab(props) {
                     <AmplifyS3ImagePicker headerTitle='Add Banner Image' aria-required="false" />
 
                 </Flex>
+                <DialogActions>
+                <Button variant="text" onClick={handleClose}>Discard</Button>
+                <Button variant="contained" borderRadius="2rem" onClick={handlePost}>Publish</Button>
+            </DialogActions>
             </Popup>
         </Flex>
     );
@@ -323,9 +325,6 @@ function PostsTab(props) {
             }
             <Popup
                 open={open}
-                setOpen={setOpen}
-                handleClose={handleClose}
-                handlePost={handlePost}
                 title={"New Post"}
             >
                 <Flex minWidth={"500px"} minHeight="700px" border={"1px solid #f8f8f9"}>
@@ -333,6 +332,10 @@ function PostsTab(props) {
                         <TextEditor editor={editor} readOnly={false} />
                     </Slate>
                 </Flex>
+                <DialogActions>
+                <Button variant="text" onClick={handleClose}>Discard</Button>
+                <Button variant="contained" borderRadius="2rem" onClick={handlePost}>Publish</Button>
+            </DialogActions>
             </Popup>
         </Flex>
     );
@@ -364,7 +367,6 @@ function Community() {
         profileImage: image,
         bannerImage: banner,
         date: "12, Nov 2022",
-        category: "Technology",
         membersCount: 250,
         admins: [
             "Mark Zuckerberg",
@@ -567,10 +569,6 @@ function Community() {
                         <Button variant="contained">Join</Button>
                     </Flex>
                     <Flex>
-                        <Flex paddingTop={"20px"} color="#999999" justifyContent={"center"} alignItems="center">
-                            <CategoryOutlined />
-                            <Text color="#999999">{communityData.category}</Text>
-                        </Flex>
                         <Flex paddingTop={"20px"} color="#999999" justifyContent={"center"} alignItems="center">
                             <CalendarTodayOutlined />
                             <Text color="#999999">{communityData.date}</Text>

@@ -1,72 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateCategory = /* GraphQL */ `
-  subscription OnCreateCategory($filter: ModelSubscriptionCategoryFilterInput) {
-    onCreateCategory(filter: $filter) {
-      id
-      title
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateCategory = /* GraphQL */ `
-  subscription OnUpdateCategory($filter: ModelSubscriptionCategoryFilterInput) {
-    onUpdateCategory(filter: $filter) {
-      id
-      title
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteCategory = /* GraphQL */ `
-  subscription OnDeleteCategory($filter: ModelSubscriptionCategoryFilterInput) {
-    onDeleteCategory(filter: $filter) {
-      id
-      title
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateResourceType = /* GraphQL */ `
-  subscription OnCreateResourceType(
-    $filter: ModelSubscriptionResourceTypeFilterInput
-  ) {
-    onCreateResourceType(filter: $filter) {
-      id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateResourceType = /* GraphQL */ `
-  subscription OnUpdateResourceType(
-    $filter: ModelSubscriptionResourceTypeFilterInput
-  ) {
-    onUpdateResourceType(filter: $filter) {
-      id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteResourceType = /* GraphQL */ `
-  subscription OnDeleteResourceType(
-    $filter: ModelSubscriptionResourceTypeFilterInput
-  ) {
-    onDeleteResourceType(filter: $filter) {
-      id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreateUser = /* GraphQL */ `
   subscription OnCreateUser(
     $filter: ModelSubscriptionUserFilterInput
@@ -100,6 +34,7 @@ export const onCreateUser = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -113,6 +48,7 @@ export const onCreateUser = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -168,6 +104,7 @@ export const onUpdateUser = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -181,6 +118,7 @@ export const onUpdateUser = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -236,6 +174,7 @@ export const onDeleteUser = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -249,6 +188,7 @@ export const onDeleteUser = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -283,12 +223,6 @@ export const onCreateCommunity = /* GraphQL */ `
       profile_image
       banner_image
       links
-      category {
-        id
-        title
-        createdAt
-        updatedAt
-      }
       admins {
         items {
           id
@@ -325,6 +259,7 @@ export const onCreateCommunity = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -338,6 +273,7 @@ export const onCreateCommunity = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -370,12 +306,6 @@ export const onUpdateCommunity = /* GraphQL */ `
       profile_image
       banner_image
       links
-      category {
-        id
-        title
-        createdAt
-        updatedAt
-      }
       admins {
         items {
           id
@@ -412,6 +342,7 @@ export const onUpdateCommunity = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -425,6 +356,7 @@ export const onUpdateCommunity = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -457,12 +389,6 @@ export const onDeleteCommunity = /* GraphQL */ `
       profile_image
       banner_image
       links
-      category {
-        id
-        title
-        createdAt
-        updatedAt
-      }
       admins {
         items {
           id
@@ -499,6 +425,7 @@ export const onDeleteCommunity = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -512,6 +439,7 @@ export const onDeleteCommunity = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -566,8 +494,11 @@ export const onDeleteTag = /* GraphQL */ `
   }
 `;
 export const onCreateEvent = /* GraphQL */ `
-  subscription OnCreateEvent($filter: ModelSubscriptionEventFilterInput) {
-    onCreateEvent(filter: $filter) {
+  subscription OnCreateEvent(
+    $filter: ModelSubscriptionEventFilterInput
+    $owner: String
+  ) {
+    onCreateEvent(filter: $filter, owner: $owner) {
       id
       name
       banner_image
@@ -582,6 +513,7 @@ export const onCreateEvent = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -592,12 +524,6 @@ export const onCreateEvent = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -621,12 +547,16 @@ export const onCreateEvent = /* GraphQL */ `
       updatedAt
       userEventsId
       communityEventsId
+      owner
     }
   }
 `;
 export const onUpdateEvent = /* GraphQL */ `
-  subscription OnUpdateEvent($filter: ModelSubscriptionEventFilterInput) {
-    onUpdateEvent(filter: $filter) {
+  subscription OnUpdateEvent(
+    $filter: ModelSubscriptionEventFilterInput
+    $owner: String
+  ) {
+    onUpdateEvent(filter: $filter, owner: $owner) {
       id
       name
       banner_image
@@ -641,6 +571,7 @@ export const onUpdateEvent = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -651,12 +582,6 @@ export const onUpdateEvent = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -680,12 +605,16 @@ export const onUpdateEvent = /* GraphQL */ `
       updatedAt
       userEventsId
       communityEventsId
+      owner
     }
   }
 `;
 export const onDeleteEvent = /* GraphQL */ `
-  subscription OnDeleteEvent($filter: ModelSubscriptionEventFilterInput) {
-    onDeleteEvent(filter: $filter) {
+  subscription OnDeleteEvent(
+    $filter: ModelSubscriptionEventFilterInput
+    $owner: String
+  ) {
+    onDeleteEvent(filter: $filter, owner: $owner) {
       id
       name
       banner_image
@@ -700,6 +629,7 @@ export const onDeleteEvent = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -710,12 +640,6 @@ export const onDeleteEvent = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -739,19 +663,17 @@ export const onDeleteEvent = /* GraphQL */ `
       updatedAt
       userEventsId
       communityEventsId
+      owner
     }
   }
 `;
 export const onCreateResource = /* GraphQL */ `
-  subscription OnCreateResource($filter: ModelSubscriptionResourceFilterInput) {
-    onCreateResource(filter: $filter) {
+  subscription OnCreateResource(
+    $filter: ModelSubscriptionResourceFilterInput
+    $owner: String
+  ) {
+    onCreateResource(filter: $filter, owner: $owner) {
       id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
       title
       content
       tags {
@@ -793,12 +715,6 @@ export const onCreateResource = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -823,19 +739,17 @@ export const onCreateResource = /* GraphQL */ `
       userResourcesId
       communityResourcesId
       eventResourcesId
+      owner
     }
   }
 `;
 export const onUpdateResource = /* GraphQL */ `
-  subscription OnUpdateResource($filter: ModelSubscriptionResourceFilterInput) {
-    onUpdateResource(filter: $filter) {
+  subscription OnUpdateResource(
+    $filter: ModelSubscriptionResourceFilterInput
+    $owner: String
+  ) {
+    onUpdateResource(filter: $filter, owner: $owner) {
       id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
       title
       content
       tags {
@@ -877,12 +791,6 @@ export const onUpdateResource = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -907,19 +815,17 @@ export const onUpdateResource = /* GraphQL */ `
       userResourcesId
       communityResourcesId
       eventResourcesId
+      owner
     }
   }
 `;
 export const onDeleteResource = /* GraphQL */ `
-  subscription OnDeleteResource($filter: ModelSubscriptionResourceFilterInput) {
-    onDeleteResource(filter: $filter) {
+  subscription OnDeleteResource(
+    $filter: ModelSubscriptionResourceFilterInput
+    $owner: String
+  ) {
+    onDeleteResource(filter: $filter, owner: $owner) {
       id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
       title
       content
       tags {
@@ -961,12 +867,6 @@ export const onDeleteResource = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -991,6 +891,7 @@ export const onDeleteResource = /* GraphQL */ `
       userResourcesId
       communityResourcesId
       eventResourcesId
+      owner
     }
   }
 `;
@@ -1031,12 +932,6 @@ export const onCreatePost = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -1100,12 +995,6 @@ export const onUpdatePost = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -1169,12 +1058,6 @@ export const onDeletePost = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { View, useAuthenticator, Heading, Flex, TextAreaField } from '@aws-amplify/ui-react';
-import { AmplifyS3ImagePicker } from '@aws-amplify/ui-react/legacy';
-import { Button, CssBaseline, TextField, Autocomplete } from '@mui/material';
+import { View, useAuthenticator, Heading, Flex } from '@aws-amplify/ui-react';
+import { Button, CssBaseline} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Routes } from '../../values/routes';
 import { Header, Popup } from '../community/common';
 import { CommunityCard } from '../community/common';
+import { CommunityForm } from '../community/forms';
 import image from '../../assets/wallpaper.png';
 
 export function Dashboard() {
@@ -99,30 +99,6 @@ export function Dashboard() {
   const openCommunityForm=() => {
     setOpen(true);
   }
-  const handlePost=() => {
-    setOpen(false);
-  }
-
-  const Categories=[
-    { label: "Technology" },
-    { label: "Career" },
-    { label: 'General' }
-  ];
-
-  var NewCommunity={
-    name: "",
-    description: "",
-    category: "",
-    slackLink: "",
-    discordLink: "",
-    profileImage: "",
-    bannerImage: "",
-  }
-
-  const handleChange=(key, value) => {
-    NewCommunity[key]=value;
-    console.log(NewCommunity);
-  }
 
   return (
     <View
@@ -159,27 +135,8 @@ export function Dashboard() {
           }
         </View>
       </Flex>
-      <Popup open={open} setOpen={setOpen} title="New Community" handlePost={handlePost}>
-        <Flex direction="column" minWidth={"500px"} minHeight="700px" justifyContent={"center"}>
-          <TextField label="Name" aria-required="true" value={NewCommunity.name} onChange={(event)=>handleChange('name', event.target.value)}></TextField>
-
-          <TextAreaField label="Description" aria-required="false" value={NewCommunity.description} onChange={(event)=>handleChange('description', event.target.value)}></TextAreaField>
-
-          <Autocomplete
-            disablePortal
-            options={Categories}
-            sx={{ width: 230 }}
-            renderInput={(params) => <TextField {...params} label="Category" aria-required="true" value={NewCommunity.category} onChange={(event)=>handleChange('category', event.target.value)} />}
-          />
-
-          <TextField label="Slack Link" aria-required="false" value={NewCommunity.slackLink} onChange={(event)=>handleChange('slackLink', event.target.value)}></TextField>
-
-
-          <TextField label="Discord Link" aria-required="false" value={NewCommunity.discordLink} onChange={(event)=>handleChange('discordLink', event.target.value)}></TextField>
-          <AmplifyS3ImagePicker aria-required="false" />
-          <AmplifyS3ImagePicker headerTitle='Add Banner Image' aria-required="false" />
-
-        </Flex>
+      <Popup open={open} title="New Community">
+        <CommunityForm setOpen={setOpen} />
       </Popup>
     </View>
   );

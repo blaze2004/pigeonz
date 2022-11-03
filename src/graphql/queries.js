@@ -1,60 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getCategory = /* GraphQL */ `
-  query GetCategory($id: ID!) {
-    getCategory(id: $id) {
-      id
-      title
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listCategories = /* GraphQL */ `
-  query ListCategories(
-    $filter: ModelCategoryFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listCategories(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        title
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getResourceType = /* GraphQL */ `
-  query GetResourceType($id: ID!) {
-    getResourceType(id: $id) {
-      id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listResourceTypes = /* GraphQL */ `
-  query ListResourceTypes(
-    $filter: ModelResourceTypeFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listResourceTypes(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
@@ -85,6 +31,7 @@ export const getUser = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -98,6 +45,7 @@ export const getUser = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -162,12 +110,6 @@ export const getCommunity = /* GraphQL */ `
       profile_image
       banner_image
       links
-      category {
-        id
-        title
-        createdAt
-        updatedAt
-      }
       admins {
         items {
           id
@@ -204,6 +146,7 @@ export const getCommunity = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -217,6 +160,7 @@ export const getCommunity = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -251,12 +195,6 @@ export const listCommunities = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -326,6 +264,7 @@ export const getEvent = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -336,12 +275,6 @@ export const getEvent = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -365,6 +298,7 @@ export const getEvent = /* GraphQL */ `
       updatedAt
       userEventsId
       communityEventsId
+      owner
     }
   }
 `;
@@ -398,6 +332,7 @@ export const listEvents = /* GraphQL */ `
         updatedAt
         userEventsId
         communityEventsId
+        owner
       }
       nextToken
     }
@@ -407,12 +342,6 @@ export const getResource = /* GraphQL */ `
   query GetResource($id: ID!) {
     getResource(id: $id) {
       id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
       title
       content
       tags {
@@ -454,12 +383,6 @@ export const getResource = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -484,6 +407,7 @@ export const getResource = /* GraphQL */ `
       userResourcesId
       communityResourcesId
       eventResourcesId
+      owner
     }
   }
 `;
@@ -496,12 +420,6 @@ export const listResources = /* GraphQL */ `
     listResources(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        type {
-          id
-          name
-          createdAt
-          updatedAt
-        }
         title
         content
         tags {
@@ -533,6 +451,7 @@ export const listResources = /* GraphQL */ `
         userResourcesId
         communityResourcesId
         eventResourcesId
+        owner
       }
       nextToken
     }
@@ -572,12 +491,6 @@ export const getPost = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }

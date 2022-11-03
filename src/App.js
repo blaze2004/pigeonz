@@ -1,8 +1,8 @@
 import { Authenticator } from '@aws-amplify/ui-react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
 import { Community, ExploreCommunities, Resource } from './screens/community';
-import { BaseLayout, Dashboard, Home, Login, RequireAuth } from './screens/screens';
+import { BaseLayout, Dashboard, Home, Login, RequireAuth, PageNotFound } from './screens/screens';
 
 function MyRoutes() {
   return (
@@ -25,6 +25,8 @@ function MyRoutes() {
 
             <Route path="auth" element={<Login />} />
 
+            <Route path='*' element={<Navigate replace to="/404"/> } />
+
           </Route>
 
           <Route path="communities">
@@ -39,10 +41,16 @@ function MyRoutes() {
                     <Resource edit={true} />
                   }
                 />
+                <Route path='*' element={<Navigate replace to="/404"/> } />
               </Route>
+              <Route path='*' element={<Navigate replace to="/404"/> } />
             </Route>
+            <Route path='*' element={<Navigate replace to="/404"/> } />
           </Route>
+
+          <Route path='*' element={<Navigate replace to="/404"/> } />
         </Route>
+        <Route path="/404" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );

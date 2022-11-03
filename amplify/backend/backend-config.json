@@ -86,5 +86,12 @@
         }
       ]
     }
+  },
+  "storage": {
+    "pigeonzAssets": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
   }
 }

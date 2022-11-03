@@ -1,84 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createCategory = /* GraphQL */ `
-  mutation CreateCategory(
-    $input: CreateCategoryInput!
-    $condition: ModelCategoryConditionInput
-  ) {
-    createCategory(input: $input, condition: $condition) {
-      id
-      title
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateCategory = /* GraphQL */ `
-  mutation UpdateCategory(
-    $input: UpdateCategoryInput!
-    $condition: ModelCategoryConditionInput
-  ) {
-    updateCategory(input: $input, condition: $condition) {
-      id
-      title
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteCategory = /* GraphQL */ `
-  mutation DeleteCategory(
-    $input: DeleteCategoryInput!
-    $condition: ModelCategoryConditionInput
-  ) {
-    deleteCategory(input: $input, condition: $condition) {
-      id
-      title
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createResourceType = /* GraphQL */ `
-  mutation CreateResourceType(
-    $input: CreateResourceTypeInput!
-    $condition: ModelResourceTypeConditionInput
-  ) {
-    createResourceType(input: $input, condition: $condition) {
-      id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateResourceType = /* GraphQL */ `
-  mutation UpdateResourceType(
-    $input: UpdateResourceTypeInput!
-    $condition: ModelResourceTypeConditionInput
-  ) {
-    updateResourceType(input: $input, condition: $condition) {
-      id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteResourceType = /* GraphQL */ `
-  mutation DeleteResourceType(
-    $input: DeleteResourceTypeInput!
-    $condition: ModelResourceTypeConditionInput
-  ) {
-    deleteResourceType(input: $input, condition: $condition) {
-      id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const createUser = /* GraphQL */ `
   mutation CreateUser(
     $input: CreateUserInput!
@@ -112,6 +34,7 @@ export const createUser = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -125,6 +48,7 @@ export const createUser = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -180,6 +104,7 @@ export const updateUser = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -193,6 +118,7 @@ export const updateUser = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -248,6 +174,7 @@ export const deleteUser = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -261,6 +188,7 @@ export const deleteUser = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -295,12 +223,6 @@ export const createCommunity = /* GraphQL */ `
       profile_image
       banner_image
       links
-      category {
-        id
-        title
-        createdAt
-        updatedAt
-      }
       admins {
         items {
           id
@@ -337,6 +259,7 @@ export const createCommunity = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -350,6 +273,7 @@ export const createCommunity = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -382,12 +306,6 @@ export const updateCommunity = /* GraphQL */ `
       profile_image
       banner_image
       links
-      category {
-        id
-        title
-        createdAt
-        updatedAt
-      }
       admins {
         items {
           id
@@ -424,6 +342,7 @@ export const updateCommunity = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -437,6 +356,7 @@ export const updateCommunity = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -469,12 +389,6 @@ export const deleteCommunity = /* GraphQL */ `
       profile_image
       banner_image
       links
-      category {
-        id
-        title
-        createdAt
-        updatedAt
-      }
       admins {
         items {
           id
@@ -511,6 +425,7 @@ export const deleteCommunity = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -524,6 +439,7 @@ export const deleteCommunity = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -606,6 +522,7 @@ export const createEvent = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -616,12 +533,6 @@ export const createEvent = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -645,6 +556,7 @@ export const createEvent = /* GraphQL */ `
       updatedAt
       userEventsId
       communityEventsId
+      owner
     }
   }
 `;
@@ -668,6 +580,7 @@ export const updateEvent = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -678,12 +591,6 @@ export const updateEvent = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -707,6 +614,7 @@ export const updateEvent = /* GraphQL */ `
       updatedAt
       userEventsId
       communityEventsId
+      owner
     }
   }
 `;
@@ -730,6 +638,7 @@ export const deleteEvent = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -740,12 +649,6 @@ export const deleteEvent = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -769,6 +672,7 @@ export const deleteEvent = /* GraphQL */ `
       updatedAt
       userEventsId
       communityEventsId
+      owner
     }
   }
 `;
@@ -779,12 +683,6 @@ export const createResource = /* GraphQL */ `
   ) {
     createResource(input: $input, condition: $condition) {
       id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
       title
       content
       tags {
@@ -826,12 +724,6 @@ export const createResource = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -856,6 +748,7 @@ export const createResource = /* GraphQL */ `
       userResourcesId
       communityResourcesId
       eventResourcesId
+      owner
     }
   }
 `;
@@ -866,12 +759,6 @@ export const updateResource = /* GraphQL */ `
   ) {
     updateResource(input: $input, condition: $condition) {
       id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
       title
       content
       tags {
@@ -913,12 +800,6 @@ export const updateResource = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -943,6 +824,7 @@ export const updateResource = /* GraphQL */ `
       userResourcesId
       communityResourcesId
       eventResourcesId
+      owner
     }
   }
 `;
@@ -953,12 +835,6 @@ export const deleteResource = /* GraphQL */ `
   ) {
     deleteResource(input: $input, condition: $condition) {
       id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
       title
       content
       tags {
@@ -1000,12 +876,6 @@ export const deleteResource = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -1030,6 +900,7 @@ export const deleteResource = /* GraphQL */ `
       userResourcesId
       communityResourcesId
       eventResourcesId
+      owner
     }
   }
 `;
@@ -1070,12 +941,6 @@ export const createPost = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -1139,12 +1004,6 @@ export const updatePost = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -1208,12 +1067,6 @@ export const deletePost = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }

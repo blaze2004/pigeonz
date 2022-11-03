@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../logo.png';
 import { Routes } from '../../values/routes';
 import { useNavigate } from 'react-router-dom';
-import { Avatar, IconButton, Card, CardContent, CardActionArea, Dialog, useTheme, useMediaQuery, DialogTitle, DialogContent, DialogActions, Button, Snackbar } from '@mui/material';
+import { Avatar, IconButton, Card, CardContent, CardActionArea, Dialog, useTheme, useMediaQuery, DialogTitle, DialogContent, Snackbar } from '@mui/material';
 import { stringAvatar } from '../components/avatar';
 import { PersonAddOutlined, Group } from '@mui/icons-material';
 import { useAuthenticator, Flex, Image, SearchField, Text, Heading } from '@aws-amplify/ui-react';
@@ -100,22 +100,14 @@ export function CommunityCard(props) {
 }
 
 export function Popup(props) {
-    const { children, open, setOpen, handlePost, title }=props;
+    const { children, open, title }=props;
     const theme=useTheme();
     const fullScreen=useMediaQuery(theme.breakpoints.down('md'));
-
-    const handleClose=() => {
-        setOpen(false);
-    }
 
     return (
         <Dialog open={open} fullScreen={fullScreen} className="editor-dialog">
             <DialogTitle>{title}</DialogTitle>
             <DialogContent>{children}</DialogContent>
-            <DialogActions>
-                <Button variant="text" onClick={handleClose}>Discard</Button>
-                <Button variant="contained" borderRadius="2rem" onClick={handlePost}>Publish</Button>
-            </DialogActions>
         </Dialog>
     );
 }
