@@ -6,4 +6,4 @@ Routes.set("Schedule", "/app/schedule");
 Routes.set("Explore", '/communities');
 
 // to be updated
-export const host="http://localhost:3000";
+export const host="https://master.d2z8zh4z6hefb6.amplifyapp.com";

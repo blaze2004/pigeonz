@@ -23,9 +23,6 @@
       },
       "api": {
         "pigeonz": {}
-      },
-      "storage": {
-        "pigeonzAssets": {}
       }
     }
   }
