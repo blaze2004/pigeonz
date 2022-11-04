@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "pigeonz800a52ea_identitypool_800a52ea",
-    "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "pigeon800a52ea",
-    "userPoolName": "pigeonz800a52ea_userpool_800a52ea",
+    "identityPoolName": "pigeonz607aaeab_identitypool_607aaeab",
+    "allowUnauthenticatedIdentities": true,
+    "resourceNameTruncated": "pigeon607aaeab",
+    "userPoolName": "pigeonz607aaeab_userpool_607aaeab",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -15,7 +15,7 @@
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
     "emailVerificationSubject": "PigeonZ Email Verification",
-    "emailVerificationMessage": "Your PigeonZ account email verification code is {####}",
+    "emailVerificationMessage": "Welcome to PigeonZ.\n\nThanks for signing up for PigeonZ account. Before moving ahead we need to verify its really you. \n\nYour verification code is {####}\n\nShubham Tiwari\nPigeonZ",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [
@@ -33,10 +33,10 @@
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "pigeon800a52ea_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "pigeon607aaeab_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "800a52ea",
-    "resourceName": "pigeonz800a52ea",
+    "sharedId": "607aaeab",
+    "resourceName": "pigeonz607aaeab",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "manual",
     "usernameAttributes": [

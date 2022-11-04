@@ -1,84 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createCategory = /* GraphQL */ `
-  mutation CreateCategory(
-    $input: CreateCategoryInput!
-    $condition: ModelCategoryConditionInput
-  ) {
-    createCategory(input: $input, condition: $condition) {
-      id
-      title
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateCategory = /* GraphQL */ `
-  mutation UpdateCategory(
-    $input: UpdateCategoryInput!
-    $condition: ModelCategoryConditionInput
-  ) {
-    updateCategory(input: $input, condition: $condition) {
-      id
-      title
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteCategory = /* GraphQL */ `
-  mutation DeleteCategory(
-    $input: DeleteCategoryInput!
-    $condition: ModelCategoryConditionInput
-  ) {
-    deleteCategory(input: $input, condition: $condition) {
-      id
-      title
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createResourceType = /* GraphQL */ `
-  mutation CreateResourceType(
-    $input: CreateResourceTypeInput!
-    $condition: ModelResourceTypeConditionInput
-  ) {
-    createResourceType(input: $input, condition: $condition) {
-      id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateResourceType = /* GraphQL */ `
-  mutation UpdateResourceType(
-    $input: UpdateResourceTypeInput!
-    $condition: ModelResourceTypeConditionInput
-  ) {
-    updateResourceType(input: $input, condition: $condition) {
-      id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteResourceType = /* GraphQL */ `
-  mutation DeleteResourceType(
-    $input: DeleteResourceTypeInput!
-    $condition: ModelResourceTypeConditionInput
-  ) {
-    deleteResourceType(input: $input, condition: $condition) {
-      id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const createUser = /* GraphQL */ `
   mutation CreateUser(
     $input: CreateUserInput!
@@ -88,17 +10,27 @@ export const createUser = /* GraphQL */ `
       id
       name
       email
-      communities {
+      adminCommunities {
         items {
           id
-          name
-          description
-          profile_image
-          banner_image
-          links
+          userID
+          communityID
           createdAt
           updatedAt
-          userCommunitiesId
+          owner
+          admins
+        }
+        nextToken
+      }
+      memberCommunities {
+        items {
+          id
+          userID
+          communityID
+          createdAt
+          updatedAt
+          owner
+          admins
         }
         nextToken
       }
@@ -112,6 +44,7 @@ export const createUser = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -125,6 +58,7 @@ export const createUser = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -141,8 +75,6 @@ export const createUser = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      communityAdminsId
-      communityMembersId
       owner
     }
   }
@@ -156,17 +88,27 @@ export const updateUser = /* GraphQL */ `
       id
       name
       email
-      communities {
+      adminCommunities {
         items {
           id
-          name
-          description
-          profile_image
-          banner_image
-          links
+          userID
+          communityID
           createdAt
           updatedAt
-          userCommunitiesId
+          owner
+          admins
+        }
+        nextToken
+      }
+      memberCommunities {
+        items {
+          id
+          userID
+          communityID
+          createdAt
+          updatedAt
+          owner
+          admins
         }
         nextToken
       }
@@ -180,6 +122,7 @@ export const updateUser = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -193,6 +136,7 @@ export const updateUser = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -209,8 +153,6 @@ export const updateUser = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      communityAdminsId
-      communityMembersId
       owner
     }
   }
@@ -224,17 +166,27 @@ export const deleteUser = /* GraphQL */ `
       id
       name
       email
-      communities {
+      adminCommunities {
         items {
           id
-          name
-          description
-          profile_image
-          banner_image
-          links
+          userID
+          communityID
           createdAt
           updatedAt
-          userCommunitiesId
+          owner
+          admins
+        }
+        nextToken
+      }
+      memberCommunities {
+        items {
+          id
+          userID
+          communityID
+          createdAt
+          updatedAt
+          owner
+          admins
         }
         nextToken
       }
@@ -248,6 +200,7 @@ export const deleteUser = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -261,6 +214,7 @@ export const deleteUser = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -277,8 +231,6 @@ export const deleteUser = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      communityAdminsId
-      communityMembersId
       owner
     }
   }
@@ -295,35 +247,27 @@ export const createCommunity = /* GraphQL */ `
       profile_image
       banner_image
       links
-      category {
-        id
-        title
-        createdAt
-        updatedAt
-      }
       admins {
         items {
           id
-          name
-          email
+          userID
+          communityID
           createdAt
           updatedAt
-          communityAdminsId
-          communityMembersId
           owner
+          admins
         }
         nextToken
       }
       members {
         items {
           id
-          name
-          email
+          userID
+          communityID
           createdAt
           updatedAt
-          communityAdminsId
-          communityMembersId
           owner
+          admins
         }
         nextToken
       }
@@ -337,6 +281,7 @@ export const createCommunity = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -350,6 +295,7 @@ export const createCommunity = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -366,7 +312,6 @@ export const createCommunity = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userCommunitiesId
     }
   }
 `;
@@ -382,35 +327,27 @@ export const updateCommunity = /* GraphQL */ `
       profile_image
       banner_image
       links
-      category {
-        id
-        title
-        createdAt
-        updatedAt
-      }
       admins {
         items {
           id
-          name
-          email
+          userID
+          communityID
           createdAt
           updatedAt
-          communityAdminsId
-          communityMembersId
           owner
+          admins
         }
         nextToken
       }
       members {
         items {
           id
-          name
-          email
+          userID
+          communityID
           createdAt
           updatedAt
-          communityAdminsId
-          communityMembersId
           owner
+          admins
         }
         nextToken
       }
@@ -424,6 +361,7 @@ export const updateCommunity = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -437,6 +375,7 @@ export const updateCommunity = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -453,7 +392,6 @@ export const updateCommunity = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userCommunitiesId
     }
   }
 `;
@@ -469,35 +407,27 @@ export const deleteCommunity = /* GraphQL */ `
       profile_image
       banner_image
       links
-      category {
-        id
-        title
-        createdAt
-        updatedAt
-      }
       admins {
         items {
           id
-          name
-          email
+          userID
+          communityID
           createdAt
           updatedAt
-          communityAdminsId
-          communityMembersId
           owner
+          admins
         }
         nextToken
       }
       members {
         items {
           id
-          name
-          email
+          userID
+          communityID
           createdAt
           updatedAt
-          communityAdminsId
-          communityMembersId
           owner
+          admins
         }
         nextToken
       }
@@ -511,6 +441,7 @@ export const deleteCommunity = /* GraphQL */ `
           updatedAt
           userEventsId
           communityEventsId
+          owner
         }
         nextToken
       }
@@ -524,6 +455,7 @@ export const deleteCommunity = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
       }
@@ -540,49 +472,6 @@ export const deleteCommunity = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userCommunitiesId
-    }
-  }
-`;
-export const createTag = /* GraphQL */ `
-  mutation CreateTag(
-    $input: CreateTagInput!
-    $condition: ModelTagConditionInput
-  ) {
-    createTag(input: $input, condition: $condition) {
-      id
-      title
-      createdAt
-      updatedAt
-      resourceTagsId
-    }
-  }
-`;
-export const updateTag = /* GraphQL */ `
-  mutation UpdateTag(
-    $input: UpdateTagInput!
-    $condition: ModelTagConditionInput
-  ) {
-    updateTag(input: $input, condition: $condition) {
-      id
-      title
-      createdAt
-      updatedAt
-      resourceTagsId
-    }
-  }
-`;
-export const deleteTag = /* GraphQL */ `
-  mutation DeleteTag(
-    $input: DeleteTagInput!
-    $condition: ModelTagConditionInput
-  ) {
-    deleteTag(input: $input, condition: $condition) {
-      id
-      title
-      createdAt
-      updatedAt
-      resourceTagsId
     }
   }
 `;
@@ -606,8 +495,32 @@ export const createEvent = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
+      }
+      user {
+        id
+        name
+        email
+        adminCommunities {
+          nextToken
+        }
+        memberCommunities {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
       }
       community {
         id
@@ -616,12 +529,6 @@ export const createEvent = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -639,12 +546,12 @@ export const createEvent = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        userCommunitiesId
       }
       createdAt
       updatedAt
       userEventsId
       communityEventsId
+      owner
     }
   }
 `;
@@ -668,8 +575,32 @@ export const updateEvent = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
+      }
+      user {
+        id
+        name
+        email
+        adminCommunities {
+          nextToken
+        }
+        memberCommunities {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
       }
       community {
         id
@@ -678,12 +609,6 @@ export const updateEvent = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -701,12 +626,12 @@ export const updateEvent = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        userCommunitiesId
       }
       createdAt
       updatedAt
       userEventsId
       communityEventsId
+      owner
     }
   }
 `;
@@ -730,8 +655,32 @@ export const deleteEvent = /* GraphQL */ `
           userResourcesId
           communityResourcesId
           eventResourcesId
+          owner
         }
         nextToken
+      }
+      user {
+        id
+        name
+        email
+        adminCommunities {
+          nextToken
+        }
+        memberCommunities {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
       }
       community {
         id
@@ -740,12 +689,6 @@ export const deleteEvent = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -763,12 +706,12 @@ export const deleteEvent = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        userCommunitiesId
       }
       createdAt
       updatedAt
       userEventsId
       communityEventsId
+      owner
     }
   }
 `;
@@ -779,29 +722,16 @@ export const createResource = /* GraphQL */ `
   ) {
     createResource(input: $input, condition: $condition) {
       id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
       title
       content
-      tags {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          resourceTagsId
-        }
-        nextToken
-      }
       user {
         id
         name
         email
-        communities {
+        adminCommunities {
+          nextToken
+        }
+        memberCommunities {
           nextToken
         }
         events {
@@ -815,8 +745,6 @@ export const createResource = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        communityAdminsId
-        communityMembersId
         owner
       }
       community {
@@ -826,12 +754,6 @@ export const createResource = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -849,13 +771,13 @@ export const createResource = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        userCommunitiesId
       }
       createdAt
       updatedAt
       userResourcesId
       communityResourcesId
       eventResourcesId
+      owner
     }
   }
 `;
@@ -866,29 +788,16 @@ export const updateResource = /* GraphQL */ `
   ) {
     updateResource(input: $input, condition: $condition) {
       id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
       title
       content
-      tags {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          resourceTagsId
-        }
-        nextToken
-      }
       user {
         id
         name
         email
-        communities {
+        adminCommunities {
+          nextToken
+        }
+        memberCommunities {
           nextToken
         }
         events {
@@ -902,8 +811,6 @@ export const updateResource = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        communityAdminsId
-        communityMembersId
         owner
       }
       community {
@@ -913,12 +820,6 @@ export const updateResource = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -936,13 +837,13 @@ export const updateResource = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        userCommunitiesId
       }
       createdAt
       updatedAt
       userResourcesId
       communityResourcesId
       eventResourcesId
+      owner
     }
   }
 `;
@@ -953,29 +854,16 @@ export const deleteResource = /* GraphQL */ `
   ) {
     deleteResource(input: $input, condition: $condition) {
       id
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
       title
       content
-      tags {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          resourceTagsId
-        }
-        nextToken
-      }
       user {
         id
         name
         email
-        communities {
+        adminCommunities {
+          nextToken
+        }
+        memberCommunities {
           nextToken
         }
         events {
@@ -989,8 +877,6 @@ export const deleteResource = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        communityAdminsId
-        communityMembersId
         owner
       }
       community {
@@ -1000,12 +886,6 @@ export const deleteResource = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -1023,13 +903,13 @@ export const deleteResource = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        userCommunitiesId
       }
       createdAt
       updatedAt
       userResourcesId
       communityResourcesId
       eventResourcesId
+      owner
     }
   }
 `;
@@ -1045,7 +925,10 @@ export const createPost = /* GraphQL */ `
         id
         name
         email
-        communities {
+        adminCommunities {
+          nextToken
+        }
+        memberCommunities {
           nextToken
         }
         events {
@@ -1059,8 +942,6 @@ export const createPost = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        communityAdminsId
-        communityMembersId
         owner
       }
       community {
@@ -1070,12 +951,6 @@ export const createPost = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -1093,7 +968,6 @@ export const createPost = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        userCommunitiesId
       }
       createdAt
       updatedAt
@@ -1114,7 +988,10 @@ export const updatePost = /* GraphQL */ `
         id
         name
         email
-        communities {
+        adminCommunities {
+          nextToken
+        }
+        memberCommunities {
           nextToken
         }
         events {
@@ -1128,8 +1005,6 @@ export const updatePost = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        communityAdminsId
-        communityMembersId
         owner
       }
       community {
@@ -1139,12 +1014,6 @@ export const updatePost = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -1162,7 +1031,6 @@ export const updatePost = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        userCommunitiesId
       }
       createdAt
       updatedAt
@@ -1183,7 +1051,10 @@ export const deletePost = /* GraphQL */ `
         id
         name
         email
-        communities {
+        adminCommunities {
+          nextToken
+        }
+        memberCommunities {
           nextToken
         }
         events {
@@ -1197,8 +1068,6 @@ export const deletePost = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        communityAdminsId
-        communityMembersId
         owner
       }
       community {
@@ -1208,12 +1077,6 @@ export const deletePost = /* GraphQL */ `
         profile_image
         banner_image
         links
-        category {
-          id
-          title
-          createdAt
-          updatedAt
-        }
         admins {
           nextToken
         }
@@ -1231,12 +1094,395 @@ export const deletePost = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        userCommunitiesId
       }
       createdAt
       updatedAt
       userPostsId
       communityPostsId
+    }
+  }
+`;
+export const createUserAdminCommunities = /* GraphQL */ `
+  mutation CreateUserAdminCommunities(
+    $input: CreateUserAdminCommunitiesInput!
+    $condition: ModelUserAdminCommunitiesConditionInput
+  ) {
+    createUserAdminCommunities(input: $input, condition: $condition) {
+      id
+      userID
+      communityID
+      user {
+        id
+        name
+        email
+        adminCommunities {
+          nextToken
+        }
+        memberCommunities {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      owner
+      admins
+    }
+  }
+`;
+export const updateUserAdminCommunities = /* GraphQL */ `
+  mutation UpdateUserAdminCommunities(
+    $input: UpdateUserAdminCommunitiesInput!
+    $condition: ModelUserAdminCommunitiesConditionInput
+  ) {
+    updateUserAdminCommunities(input: $input, condition: $condition) {
+      id
+      userID
+      communityID
+      user {
+        id
+        name
+        email
+        adminCommunities {
+          nextToken
+        }
+        memberCommunities {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      owner
+      admins
+    }
+  }
+`;
+export const deleteUserAdminCommunities = /* GraphQL */ `
+  mutation DeleteUserAdminCommunities(
+    $input: DeleteUserAdminCommunitiesInput!
+    $condition: ModelUserAdminCommunitiesConditionInput
+  ) {
+    deleteUserAdminCommunities(input: $input, condition: $condition) {
+      id
+      userID
+      communityID
+      user {
+        id
+        name
+        email
+        adminCommunities {
+          nextToken
+        }
+        memberCommunities {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      owner
+      admins
+    }
+  }
+`;
+export const createUserMemberCommunities = /* GraphQL */ `
+  mutation CreateUserMemberCommunities(
+    $input: CreateUserMemberCommunitiesInput!
+    $condition: ModelUserMemberCommunitiesConditionInput
+  ) {
+    createUserMemberCommunities(input: $input, condition: $condition) {
+      id
+      userID
+      communityID
+      user {
+        id
+        name
+        email
+        adminCommunities {
+          nextToken
+        }
+        memberCommunities {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      owner
+      admins
+    }
+  }
+`;
+export const updateUserMemberCommunities = /* GraphQL */ `
+  mutation UpdateUserMemberCommunities(
+    $input: UpdateUserMemberCommunitiesInput!
+    $condition: ModelUserMemberCommunitiesConditionInput
+  ) {
+    updateUserMemberCommunities(input: $input, condition: $condition) {
+      id
+      userID
+      communityID
+      user {
+        id
+        name
+        email
+        adminCommunities {
+          nextToken
+        }
+        memberCommunities {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      owner
+      admins
+    }
+  }
+`;
+export const deleteUserMemberCommunities = /* GraphQL */ `
+  mutation DeleteUserMemberCommunities(
+    $input: DeleteUserMemberCommunitiesInput!
+    $condition: ModelUserMemberCommunitiesConditionInput
+  ) {
+    deleteUserMemberCommunities(input: $input, condition: $condition) {
+      id
+      userID
+      communityID
+      user {
+        id
+        name
+        email
+        adminCommunities {
+          nextToken
+        }
+        memberCommunities {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      community {
+        id
+        name
+        description
+        profile_image
+        banner_image
+        links
+        admins {
+          nextToken
+        }
+        members {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+        resources {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      owner
+      admins
     }
   }
 `;

@@ -1,6 +1,6 @@
 {
   "auth": {
-    "pigeonz800a52ea": {
+    "pigeonz607aaeab": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -33,19 +33,6 @@
       }
     }
   },
-  "function": {
-    "pigeonz6984e2cfCustomMessage": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "CreateUserProfile": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": []
-    }
-  },
   "api": {
     "pigeonz": {
       "service": "AppSync",
@@ -53,7 +40,7 @@
       "dependsOn": [
         {
           "category": "auth",
-          "resourceName": "pigeonz800a52ea",
+          "resourceName": "pigeonz607aaeab",
           "attributes": [
             "UserPoolId"
           ]
@@ -62,24 +49,43 @@
       "output": {
         "authConfig": {
           "defaultAuthentication": {
-            "authenticationType": "API_KEY",
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authpigeonz607aaeab"
             }
           },
           "additionalAuthenticationProviders": [
             {
-              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-              "userPoolConfig": {
-                "userPoolId": "authpigeonz800a52ea"
-              }
+              "authenticationType": "AWS_IAM"
             },
             {
-              "authenticationType": "AWS_IAM"
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "apiKeyExpirationDays": 30,
+                "apiKeyExpirationDate": "2022-12-02T15:33:49.104Z",
+                "description": "PigeonZ web client"
+              }
             }
           ]
         }
       }
     }
-  }
+  },
+  "function": {
+    "CreateUserProfile": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "pigeonz",
+          "attributes": [
+            "GraphQLAPIIdOutput"
+          ]
+        }
+      ]
+    }
+  },
+  "storage": {}
 }

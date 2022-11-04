@@ -1,61 +1,45 @@
 # This "input" configures a global authorization rule to enable public access to
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
 
-type User @model @auth(rules: [{ allow: public, provider: iam, operations: [create, read, update] }, {allow: public, operations: [read]}, {allow: owner}]){
+type User @model @auth(rules: [{ allow: public, provider: iam, operations: [create, read, update, delete] }, {allow: public, operations: [read]}, {allow: owner}, {allow: private, operations: [create, read]}]){
   id: ID!
   name: String!
   email: String!
-  communities: [Community!] @hasMany
+  adminCommunities: [Community!] @manyToMany(relationName: "UserAdminCommunities")
+  memberCommunities: [Community!] @manyToMany(relationName: "UserMemberCommunities")
   events: [Event!] @hasMany
   resources: [Resource!] @hasMany
   posts: [Post!] @hasMany
 }
 
-type Community @model @auth(rules: [{allow: owner, ownerField: "admins"}, {allow: public, operations: [read]}]){
+type Community @model @auth(rules: [{allow: owner, ownerField: "admins"}, {allow: public, operations: [read]}, {allow: private, operations: [create, read]}]){
   id: ID!
   name: String!
   description: String
   profile_image: String
   banner_image: String
   links: [String]
-  category: Category!
-  admins: [User!] @hasMany
-  members: [User!] @hasMany
+  admins: [User!] @manyToMany(relationName: "UserAdminCommunities")
+  members: [User!] @manyToMany(relationName: "UserMemberCommunities")
   events: [Event!] @hasMany
   resources: [Resource!] @hasMany
   posts: [Post!] @hasMany
 }
 
-type Category @model {
-  id: ID!
-  title: String!
-}
-
-type Tag @model @auth(rules: [{allow: public, operations: [read]}, {allow: private, operations: [create, read]}]){
-  id: ID!
-  title: String!
-}
-
-type Event @model @auth(rules: [{allow: public, operations: [read]}]) {
+type Event @model @auth(rules: [{allow: public, operations: [read]}, {allow: private, operations: [create, read]}, {allow: owner, operations: [create, read, update, delete]}]) {
   id: ID!
   name: String!
   banner_image: String
   registration_link: String!
   resources: [Resource!] @hasMany
+  user: User! @belongsTo
   community: Community @belongsTo
 }
 
-type ResourceType @model {
+type Resource @model @auth(rules: [{allow:public, operations: [read]}, {allow: private, operations: [create, read]}, {allow: owner, operations: [create, read, update, delete]}]){
   id: ID!
-  name: String!
-}
-
-type Resource @model @auth(rules: [{allow:public, operations: [read]}]){
-  id: ID!
-  type: ResourceType!
   title: String!
   content: String!
-  tags: [Tag!] @hasMany
   user: User! @belongsTo
   community: Community! @belongsTo
 }

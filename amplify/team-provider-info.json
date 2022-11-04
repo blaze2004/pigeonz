@@ -1,34 +1,24 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-pigeonz-dev-172829-authRole",
-      "UnauthRoleArn": "arn:aws:iam::665229110435:role/amplify-pigeonz-dev-172829-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::665229110435:role/amplify-pigeonz-dev-172829-authRole",
+      "AuthRoleName": "amplify-pigeonz-dev-202009-authRole",
+      "UnauthRoleArn": "arn:aws:iam::665229110435:role/amplify-pigeonz-dev-202009-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::665229110435:role/amplify-pigeonz-dev-202009-authRole",
       "Region": "ap-south-1",
-      "DeploymentBucketName": "amplify-pigeonz-dev-172829-deployment",
-      "UnauthRoleName": "amplify-pigeonz-dev-172829-unauthRole",
-      "StackName": "amplify-pigeonz-dev-172829",
-      "StackId": "arn:aws:cloudformation:ap-south-1:665229110435:stack/amplify-pigeonz-dev-172829/d97b7da0-5200-11ed-9e52-0a62cfc811ec",
-      "AmplifyAppId": "d37lq7xy2b3t4x"
+      "DeploymentBucketName": "amplify-pigeonz-dev-202009-deployment",
+      "UnauthRoleName": "amplify-pigeonz-dev-202009-unauthRole",
+      "StackName": "amplify-pigeonz-dev-202009",
+      "StackId": "arn:aws:cloudformation:ap-south-1:665229110435:stack/amplify-pigeonz-dev-202009/a84fe340-5abd-11ed-ab6c-0279fc3e6c92",
+      "AmplifyAppId": "d2z8zh4z6hefb6"
     },
     "categories": {
       "auth": {
-        "pigeonz398194cb": {},
-        "pigeonz6984e2cf": {},
-        "pigeonz800a52ea": {}
+        "pigeonz607aaeab": {}
       },
       "function": {
-        "pigeonz6984e2cfCustomMessage": {
-          "REDIRECTURL": "",
-          "EMAILSUBJECT": "PigeonZ email verification",
-          "EMAILMESSAGE": "",
-          "deploymentBucketName": "amplify-pigeonz-dev-172829-deployment",
-          "s3Key": "amplify-builds/pigeonz6984e2cfCustomMessage-4c6d2f43627552353672-build.zip"
-        },
         "CreateUserProfile": {
-          "deploymentBucketName": "amplify-pigeonz-dev-172829-deployment",
-          "s3Key": "amplify-builds/CreateUserProfile-6f6a38345a5763564c4c-build.zip",
-          "apiPigeonzUsertableName": "User-l5xwcey2nfalpmjekdqygpr2su-dev"
+          "deploymentBucketName": "amplify-pigeonz-dev-202009-deployment",
+          "s3Key": "amplify-builds/CreateUserProfile-45486b73795852435674-build.zip"
         }
       },
       "api": {
