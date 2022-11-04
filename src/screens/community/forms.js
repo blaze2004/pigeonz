@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation, Auth } from 'aws-amplify';
 import { TextAreaField, Flex } from '@aws-amplify/ui-react';
-import { AmplifyS3ImagePicker } from '@aws-amplify/ui-react/legacy';
-import { createCommunity, updateUser } from '../../graphql/mutations';
-import { getUser, listCommunities } from '../../graphql/queries';
+import { createCommunity, createUserAdminCommunities } from '../../graphql/mutations';
+import { listCommunities } from '../../graphql/queries';
 import { TextField, DialogActions, Button, Snackbar, Backdrop, CircularProgress } from '@mui/material';
 
 const initialState={
@@ -16,15 +15,13 @@ const initialState={
 }
 
 export function CommunityForm(props) {
-    // Current user details
-    const [userData, setUserData]=useState("");
     // Completion message
     const [openMessage, setOpenMessage]=useState(false);
 
     // loading animation
     const [loading, setLoading]=useState(false);
-    const handleToggle=() => {
-        setLoading(!loading);
+    const handleToggle=(status) => {
+        setLoading(status);
     }
 
     // Form
@@ -34,23 +31,11 @@ export function CommunityForm(props) {
     const [communitiesList, setCommunitiesList]=useState([]);
 
     useEffect(() => {
-        fetchUserData();
-        fetchCommunitiesList();
-    }, []);
+        fetchCommunitiesList()
+    });
 
     function setInput(key, value) {
         setFormState({ ...formState, [key]: value });
-    }
-    async function fetchUserData() {
-        try {
-            const userId=await Auth.currentAuthenticatedUser();
-            const userData=await API.graphql(graphqlOperation(getUser, { input: { id: userId } }));
-            setUserData(userData);
-        } catch (error) {
-            setMessage("We are not able to verify you.");
-            setOpenMessage(true);
-            setOpen(false);
-        }
     }
 
     async function fetchCommunitiesList() {
@@ -59,20 +44,22 @@ export function CommunityForm(props) {
             const communitiesList=Array.from(communities.data.listCommunities.items, (value) => value.name);
             setCommunitiesList(communitiesList);
         } catch (error) {
-            setMessage("There is some error from our side, please try again.");
+            setMessage("Error connecting to the server.");
             setOpenMessage(true);
-            setOpen(false);
+            setTimeout(setOpen, 2000, false);
+            // setOpen(false);
         }
     }
 
     async function addCommunity() {
-        handleToggle();
+        handleToggle(true);
         try {
             if (!formState.name) return
 
-            if (communitiesList.indexOf(formState.name)<0) {
+            if (communitiesList.indexOf(formState.name)>=0) {
                 setMessage("Community name should be unique.");
                 setOpenMessage(true);
+                handleToggle(false);
                 return;
             }
 
@@ -84,34 +71,32 @@ export function CommunityForm(props) {
                 links: [
                     formState.slackLink,
                     formState.discordLink
-                ],
-                admins: [
-                    userData.id
                 ]
             }
-            
-            const newCommunity = await API.graphql(graphqlOperation(createCommunity, { input: communityData }));
 
+            const newCommunity=await API.graphql(graphqlOperation(createCommunity, { input: communityData }));
+            const userId=await Auth.currentAuthenticatedUser();
             const userInput={
-                id: userData.id,
-                communities: [...userData.communities, newCommunity.data.createCommunity.id]
-
+                userID: userId.username,
+                communityID: newCommunity.data.createCommunity.id
             }
 
-            await API.graphql(graphqlOperation(updateUser, {input: userInput}))
+            await API.graphql(graphqlOperation(createUserAdminCommunities, { input: userInput }))
             setMessage("Community created Successfully.");
             setOpenMessage(true);
             setOpen(false);
-            handleToggle();
+            handleToggle(false);
 
         } catch (error) {
-            handleToggle();
-            alert("Error creating community.");
+            handleToggle(false);
+            setMessage("Error creating community.");
+            console.log(error);
+            setOpenMessage(true);
         }
     }
 
     return (
-        <Flex direction="column" minWidth={"500px"} minHeight="700px" justifyContent={"center"}>
+        <Flex direction="column" minWidth="500px" minHeight="700px" justifyContent={"center"}>
             <TextField
                 label="Name"
                 aria-required="true"
@@ -136,14 +121,16 @@ export function CommunityForm(props) {
                 value={formState.discordLink}
                 onChange={(event) => setInput('discordLink', event.target.value)}
             />
-            <AmplifyS3ImagePicker
+            {/* <AmplifyS3ImagePicker
                 aria-required="false"
+                track
 
             />
             <AmplifyS3ImagePicker
                 headerTitle='Add Banner Image'
                 aria-required="false"
-            />
+                track
+            /> */}
 
             <DialogActions>
                 <Button variant="text" onClick={() => { setOpen(false) }}>Discard</Button>

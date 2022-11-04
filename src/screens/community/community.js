@@ -1,523 +1,56 @@
-import React, { useState } from 'react';
-import { createEditor } from 'slate';
-import { Slate, Editable, withReact } from 'slate-react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Header, LinkCopiedSnackbar, PeopleCard, Popup, titleCase } from './common';
+import React, { useState, useEffect, useCallback } from 'react';
+import { API, graphqlOperation } from 'aws-amplify';
+import { Header } from './common';
 import { useParams } from 'react-router-dom';
-import { Avatar, CssBaseline, Button, IconButton, TextField, Card, CardContent, CardActionArea, DialogActions } from '@mui/material';
-import { View, Flex, Text, Heading, TabItem, Tabs, Divider } from '@aws-amplify/ui-react';
-import { CalendarTodayOutlined, Group, LinkOutlined, Event } from '@mui/icons-material';
-import { host, Routes } from '../../values/routes';
-import { AmplifyS3ImagePicker } from '@aws-amplify/ui-react/legacy';
-// for testing only
-import image from '../../assets/nft.png';
-import banner from '../../assets/wallpaper.png';
-import TextEditor from '../editor/editor';
+import { Avatar, CssBaseline, Snackbar} from '@mui/material';
+import { View, Flex, Text, Heading, TabItem, Tabs, useAuthenticator } from '@aws-amplify/ui-react';
+import { CalendarTodayOutlined } from '@mui/icons-material';
+import banner from '../../assets/profile_image.jpg';
+import { getCommunity, listCommunities } from '../../graphql/queries';
+import { PostsTab, MembersTab, ResourcesTab, EventsTab } from './tabs.js';
 
-function ResourceCard(props) {
-    const { communityName }=useParams();
-    const navigate=useNavigate();
-    const { resourceID, title, description }=props;
-
-    return (
-        <Card sx={{ maxWidth: 345, backgroundColor: "#2c2c2c", borderRadius: "1rem" }}>
-            <CardActionArea>
-                <CardContent onClick={() => navigate(`${Routes.get("Explore")}/${communityName}/resources/${resourceID}`)}>
-                    <Heading color="#fff" paddingTop={"10px"}>{title}</Heading>
-                    <Text color="#f9f9f8" paddingTop={"10px"}>{description}...</Text>
-                </CardContent>
-            </CardActionArea>
-        </Card>
-    );
-
-}
-
-function ResourcesTab(props) {
-    const [open, setOpen]=useState(false);
-    const [editor]=useState(() => withReact(createEditor()));
-
-    const handleClose=() => {
-        setOpen(false);
-    }
-    const handleOpen=() => {
-        setOpen(true);
-    }
-
-    const handlePost=() => {
-        setOpen(false);
-    }
-    const initialValue=[
-        {
-            type: 'paragraph',
-            children: [
-                {
-                    text: 'Type your post here...',
-                },
-            ],
-        },
-    ];
-
-    const resources=[
-        {
-            title: "Programming with python",
-            description: "This book contains basics of python documentation.",
-            id: 1,
-        },
-        {
-            title: "Programming with python",
-            description: "This book contains basics of python documentation.",
-            id: 1,
-        },
-        {
-            title: "Programming with python",
-            description: "This book contains basics of python documentation.",
-            id: 1,
-        },
-        {
-            title: "Programming with python",
-            description: "This book contains basics of python documentation.",
-            id: 1,
-        },
-        {
-            title: "Programming with python",
-            description: "This book contains basics of python documentation.",
-            id: 1,
-        },
-        {
-            title: "Programming with python",
-            description: "This book contains basics of python documentation.",
-            id: 1,
-        },
-        {
-            title: "Programming with python",
-            description: "This book contains basics of python documentation.",
-            id: 1,
-        },
-        {
-            title: "Programming with python",
-            description: "This book contains basics of python documentation.",
-            id: 1,
-        },
-        {
-            title: "Programming with python",
-            description: "This book contains basics of python documentation.",
-            id: 1,
-        },
-        {
-            title: "Programming with python",
-            description: "This book contains basics of python documentation.",
-            id: 1,
-        },
-        {
-            title: "Programming with python",
-            description: "This book contains basics of python documentation.",
-            id: 1,
-        }
-    ];
-    const css=(
-        `
-        .resources-list {
-            display: grid;
-            gap: 30px;
-            padding: 20px 80px;
-            grid-template-columns: repeat(1, 1fr);
-        }
-        
-        @media screen and (min-width: 768px){
-            .resources-list {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        `
-    );
-    return (
-        <Flex width="100%" direction="column" paddingTop="20px">
-            <style>{css}</style>
-            <Button variant="contained" onClick={handleOpen}>New Resource</Button>
-            <View as="div" className="resources-list">
-                {
-                    resources.map((item, index) => (
-                        <ResourceCard
-                            title={item.title}
-                            description={item.description}
-                            resourceID={item.id}
-                        />
-                    ))
-                }
-            </View>
-            <Popup
-                open={open}
-                title={"New Resource"}
-            >
-                <Flex minWidth={"500px"} minHeight="700px" border={"1px solid #f8f8f9"}>
-                    <Slate editor={editor} value={initialValue}>
-                        <TextEditor editor={editor} readOnly={false} />
-                    </Slate>
-                </Flex>
-                <DialogActions>
-                <Button variant="text" onClick={handleClose}>Discard</Button>
-                <Button variant="contained" borderRadius="2rem" onClick={handlePost}>Publish</Button>
-            </DialogActions>
-            </Popup>
-        </Flex>
-    );
-}
-
-function EventCard(props) {
-    const navigate=useNavigate();
-    return (
-        <Flex direction={"column"} padding="5px" borderRadius={"1rem"} border="1px solid #f8f8f9" marginBottom={"2px"} marginTop="2px">
-            <Flex justifyContent={"space-between"} alignItems="center" marginBottom={"5px"} marginTop="5px">
-                <Flex alignItems={"center"}>
-                    <Avatar>
-                        <Event />
-                    </Avatar>
-                    <Text color="#fff" fontWeight="bold">{props.title}</Text>
-                </Flex>
-                <Button variant="contained" onClick={() => navigate(props.registrationLink)}>Register</Button>
-            </Flex>
-            <Text color="#fff">{props.description}</Text>
-            <Button variant="text" onClick={() => navigate(props.url)}>More info</Button>
-        </Flex>
-    );
-}
-
-function EventsTab(props) {
-    const [open, setOpen]=useState(false);
-
-    const handleClose=() => {
-        setOpen(false);
-    }
-    const handleOpen=() => {
-        setOpen(true);
-    }
-
-    const handlePost=() => {
-        setOpen(false);
-    }
-
-    // var NewEvent={
-    //     name: "",
-    //     bannerImage: "",
-    //     registrationLink: "",
-    //     resources: []
-    // }
-    return (
-        <Flex direction={"column"} paddingTop="20px">
-            <Button variant="contained" onClick={handleOpen}>New Event</Button>
-            {
-                props.events.map((event, _) => (
-                    <EventCard
-                        title={event.title}
-                        description={event.description}
-                        url={event.url}
-                        registrationLink={event.registrationLink}
-                    />
-                ))
-            }
-            <Popup
-                open={open}
-                title={"New Event"}
-            >
-                <Flex direction="column" minWidth={"500px"} minHeight="700px" justifyContent={"center"}>
-                    <TextField label="Name" aria-required="true"></TextField>
-
-                    <TextField label="Registration Link" aria-required="true"></TextField>
-                    <AmplifyS3ImagePicker headerTitle='Add Banner Image' aria-required="false" />
-
-                </Flex>
-                <DialogActions>
-                <Button variant="text" onClick={handleClose}>Discard</Button>
-                <Button variant="contained" borderRadius="2rem" onClick={handlePost}>Publish</Button>
-            </DialogActions>
-            </Popup>
-        </Flex>
-    );
-}
-
-function MembersTab(props) {
-
-    const [open, setOpen]=useState(false);
-
-    const handleOpen=() => {
-        setOpen(true);
-    }
-
-    const location=useLocation();
-
-    function copyLink() {
-        navigator.clipboard.writeText(host+location.pathname);
-        handleOpen();
-    }
-
-    return (
-        <Flex direction={"column"} paddingTop="20px">
-            <Button variant="contained" onClick={() => copyLink()}>Invite</Button>
-            <Heading level={5} fontWeight="bold" color="#fff" paddingTop={"20px"}>Admins</Heading>
-            {
-                props.admins.map((name, _) => (
-                    <PeopleCard name={name} />
-                ))
-            }
-            <Heading level={5} fontWeight="bold" color="#fff" paddingTop={"20px"}>Members</Heading>
-            {
-                props.members.map((name, _) => (
-                    <PeopleCard name={name} />
-                ))
-            }
-            <LinkCopiedSnackbar open={open} setOpen={setOpen} />
-        </Flex>
-    );
-}
-
-function Post(props) {
-    const post=props.post;
-    const [editor]=useState(() => withReact(createEditor()));
-    return (
-        <View as="div">
-            <PeopleCard name={post.user.name}>
-                <Text color="#999999">{post.createdAt}</Text>
-            </PeopleCard>
-            <Flex direction="column" paddingTop={"10px"} paddingLeft="20px" paddingRight={"20px"}>
-                <Slate editor={editor} value={post.content}>
-                    <Editable readOnly={true} />
-                </Slate>
-                <Divider orientation="horizontal" />
-            </Flex>
-
-        </View>
-    );
-}
-
-function PostsTab(props) {
-    const [open, setOpen]=useState(false);
-    const [editor]=useState(() => withReact(createEditor()));
-
-    const handleClose=() => {
-        setOpen(false);
-    }
-    const handleOpen=() => {
-        setOpen(true);
-    }
-
-    const handlePost=() => {
-        setOpen(false);
-    }
-
-    const initialValue=[
-        {
-            type: 'paragraph',
-            children: [
-                {
-                    text: 'Type your post here...',
-                },
-            ],
-        },
-    ];
-
-    return (
-        <Flex direction={"column"} paddingTop="20px">
-            <Button variant="contained" onClick={handleOpen}>New Post</Button>
-            {
-                props.posts.map((post, _) => (
-                    <Post post={post} />
-                ))
-            }
-            <Popup
-                open={open}
-                title={"New Post"}
-            >
-                <Flex minWidth={"500px"} minHeight="700px" border={"1px solid #f8f8f9"}>
-                    <Slate editor={editor} value={initialValue}>
-                        <TextEditor editor={editor} readOnly={false} />
-                    </Slate>
-                </Flex>
-                <DialogActions>
-                <Button variant="text" onClick={handleClose}>Discard</Button>
-                <Button variant="contained" borderRadius="2rem" onClick={handlePost}>Publish</Button>
-            </DialogActions>
-            </Popup>
-        </Flex>
-    );
-}
-
-function Links(props) {
-
-    return (
-        <Flex alignItems={"center"} paddingTop="20px">
-            {
-                props.links.map((link, _) => (
-                    <IconButton href={link}>
-                        <Avatar>
-                            <LinkOutlined />
-                        </Avatar>
-                    </IconButton>
-                ))
-            }
-        </Flex>
-    );
-}
 
 function Community() {
     const { communityName }=useParams();
+    const [openMessage, setOpenMessage]=useState(false);
+    const [communityData, setCommunityData]=useState([]);
+    const { route } = useAuthenticator((context) => [context.route]);
 
-    const communityData={
-        name: titleCase(communityName),
-        description: "A community to share your experience and understand the life of a working developer.",
-        profileImage: image,
-        bannerImage: banner,
-        date: "12, Nov 2022",
-        membersCount: 250,
-        admins: [
-            "Mark Zuckerberg",
-            "Shubham Tiwari",
-            "Vivek IITM",
-            "IronMan",
-            "Tony Stark"
-        ],
-        members: [
-            "Steve Rogers",
-            "Natasha Romanoff",
-            "Phil Colson",
-            "Nick Fury",
-            "Peter Parker",
-            "Miles Morales"
-        ],
-        links: [
-            "https://slack.com/",
-            "https://discord.com/",
-        ],
-        events: [
-            {
-                title: "General MeetUp",
-                description: "This is a general meetup organised by the community to help fellow develoeprs know each other.",
-                url: "/",
-                registrationLink: "https://meetup.com/general-meetup-2"
-            },
-            {
-                title: "General MeetUp",
-                description: "This is a general meetup organised by the community to help fellow develoeprs know each other.",
-                url: "/",
-                registrationLink: "https://meetup.com/general-meetup-2"
-            },
-            {
-                title: "General MeetUp",
-                description: "This is a general meetup organised by the community to help fellow develoeprs know each other.",
-                url: "/",
-                registrationLink: "https://meetup.com/general-meetup-2"
-            },
-            {
-                title: "General MeetUp",
-                description: "This is a general meetup organised by the community to help fellow develoeprs know each other.",
-                url: "/",
-                registrationLink: "https://meetup.com/general-meetup-2"
-            },
-            {
-                title: "General MeetUp",
-                description: "This is a general meetup organised by the community to help fellow develoeprs know each other.",
-                url: "/",
-                registrationLink: "https://meetup.com/general-meetup-2"
-            },
-            {
-                title: "General MeetUp",
-                description: "This is a general meetup organised by the community to help fellow develoeprs know each other.",
-                url: "/",
-                registrationLink: "https://meetup.com/general-meetup-2"
-            },
-            {
-                title: "General MeetUp",
-                description: "This is a general meetup organised by the community to help fellow develoeprs know each other.",
-                url: "/",
-                registrationLink: "https://meetup.com/general-meetup-2"
-            },
-            {
-                title: "General MeetUp",
-                description: "This is a general meetup organised by the community to help fellow develoeprs know each other.",
-                url: "/",
-                registrationLink: "https://meetup.com/general-meetup-2"
-            },
-            {
-                title: "General MeetUp",
-                description: "This is a general meetup organised by the community to help fellow develoeprs know each other.",
-                url: "/",
-                registrationLink: "https://meetup.com/general-meetup-2"
+    const fetchCommunitiesData=useCallback(async () => {
+        try {
+            const getCommunityId=await API.graphql(graphqlOperation(listCommunities, { filter: { name: { eq: communityName } } }));
+            // console.log(getCommunityId);
+            const communityDetails=(getCommunityId.data.listCommunities.items.length===0)? window.location.pathname="/":getCommunityId.data.listCommunities.items[0];
+            // console.log(communityDetails);
+            const community=await API.graphql(graphqlOperation(getCommunity, { id: communityDetails.id }));
+            const communityData=community.data.getCommunity;
+           
+            if (communityData.profile_image==="") {
+                communityData.profile_image=banner;
             }
-        ],
-        posts: [
-            {
-                content: [
-                    {
-                        type: 'paragraph',
-                        children: [
-                            {
-                                text:
-                                    'Hey, Everyone I am new to this community. I would love to work with you all.',
-                            },
-                        ],
-                    },
-                ],
-                user: {
-                    name: "Shubham Tiwari"
-                },
-                createdAt: "2/02/2022"
-            },
-            {
-                content: [
-                    {
-                        type: 'paragraph',
-                        children: [
-                            {
-                                text:
-                                    'Hey, Everyone I am new to this community. I would love to work with you all.',
-                            },
-                        ],
-                    },
-                ],
-                user: {
-                    name: "Shubham Tiwari"
-                },
-                createdAt: "2/02/2022"
-            },
-            {
-                content: [
-                    {
-                        type: 'paragraph',
-                        children: [
-                            {
-                                text:
-                                    'Hey, Everyone I am new to this community. I would love to work with you all.',
-                            },
-                        ],
-                    },
-                ],
-                user: {
-                    name: "Shubham Tiwari"
-                },
-                createdAt: "2/02/2022"
-            },
-            {
-                content: [
-                    {
-                        type: 'paragraph',
-                        children: [
-                            {
-                                text:
-                                    'Hey, Everyone I am new to this community. I would love to work with you all.',
-                            },
-                        ],
-                    },
-                ],
-                user: {
-                    name: "Shubham Tiwari"
-                },
-                createdAt: "2/02/2022"
+            if (communityData.banner_image==="") {
+                communityData.banner_image=banner;
             }
-        ]
-    }
+            
+            const date=new Date(communityData.createdAt);
+            communityData.createdAt=date.getDate()+','+date.toLocaleString('default', { month: 'short' })+' '+date.getFullYear();
+            // console.log({ ...communityData, membersCount: membersCount });
+            setCommunityData({ ...communityData });
+        } catch (error) {
+            setOpenMessage(true);
+            console.log(error);
+        }
+    }, [communityName])
+
+    useEffect(() => {
+        fetchCommunitiesData();
+    }, [fetchCommunitiesData]);
+
+
 
     const css=(
         `.community-banner {
-            background-image: url(${communityData.bannerImage});
+            background-image: url(${communityData.banner_image});
             background-repeat: no-repeat;
             background-size: cover;
             padding-left: 20%;
@@ -562,43 +95,42 @@ function Community() {
                         className='community-avatar'
                         sx={{ width: 126, height: 126 }}
                         alt="community profile image"
-                        src={communityData.profileImage}
+                        src={communityData.profile_image}
                     />
                     <Flex justifyContent="space-between">
                         <Heading level={1} color="#fff" fontWeight={"bolder"}>{communityData.name}</Heading>
-                        <Button variant="contained">Join</Button>
                     </Flex>
                     <Flex>
                         <Flex paddingTop={"20px"} color="#999999" justifyContent={"center"} alignItems="center">
                             <CalendarTodayOutlined />
-                            <Text color="#999999">{communityData.date}</Text>
-                        </Flex>
-                        <Flex paddingTop={"20px"} color="#999999" justifyContent={"center"} alignItems="center">
-                            <Group />
-                            <Text color="#999999">{communityData.membersCount}</Text>
+                            <Text color="#999999">{communityData.createdAt}</Text>
                         </Flex>
                     </Flex>
-                    <Links links={communityData.links} />
                     <Text color={"#f9f9f8"} paddingTop="10px" paddingBottom="10px">{communityData.description}</Text>
                     <Tabs>
                         <TabItem title="Posts">
-                            <PostsTab posts={communityData.posts} />
+                            <PostsTab communityId={communityData.id} create={route==="authenticated"?true:false}/>
                         </TabItem>
                         <TabItem title="Events">
-                            <EventsTab events={communityData.events} />
+                            <EventsTab communityId={communityData.id} create={route==="authenticated"?true:false}/>
                         </TabItem>
                         <TabItem title="Resources">
-                            <ResourcesTab />
+                            <ResourcesTab communityId={communityData.id} create={route==="authenticated"?true:false}/>
                         </TabItem>
                         <TabItem title="Members">
-                            <MembersTab admins={communityData.admins} members={communityData.members} />
+                            <MembersTab communityId={communityData.id} create={route==="authenticated"?true:false}/>
                         </TabItem>
                     </Tabs>
 
                 </View>
             </Flex>
-
-
+            <Snackbar
+                open={openMessage}
+                autoHideDuration={2000}
+                onClose={() => { setOpenMessage(false) }}
+                message="Error fetching community details."
+            >
+            </Snackbar>
         </View>
     );
 

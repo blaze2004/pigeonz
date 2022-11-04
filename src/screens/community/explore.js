@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import {
     View, Flex, Image, SearchField, Heading, Text
 } from '@aws-amplify/ui-react';
+import { API, graphqlOperation } from 'aws-amplify';
+import { listCommunities } from '../../graphql/queries';
 import { Routes } from '../../values/routes';
 import { useNavigate } from 'react-router-dom';
-import { Card, CardContent, CardActionArea } from '@mui/material';
-import { Group } from '@mui/icons-material';
+import { Card, CardContent, CardActionArea, Snackbar } from '@mui/material';
 import { Header } from './common';
 import CssBaseline from '@mui/material/CssBaseline';
-
-// for testing only
-import image from '../../assets/nft.png';
+import image from '../../assets/profile_image.jpg';
 
 function CommunityCard(props) {
     const navigate=useNavigate();
@@ -26,10 +25,6 @@ function CommunityCard(props) {
                     />
                     <Heading color="#fff" paddingTop={"10px"}>{props.title}</Heading>
                     <Text color="#f9f9f8" paddingTop={"10px"}>{props.description}</Text>
-                    <Flex paddingTop={"20px"} color="#666666">
-                        <Group />
-                        <Text color="#666666">{props.membersCount}</Text>
-                    </Flex>
                 </CardContent>
             </CardActionArea>
         </Card>
@@ -37,56 +32,34 @@ function CommunityCard(props) {
 }
 
 function ExploreCommunities() {
-    const communities=[
-        {
-            image: image,
-            title: "Nft 1",
-            description: "Hang out, chat, learn and connect with like minded developers...",
-            membersCount: 248
-        },
-        {
-            image: image,
-            title: "Nft 3",
-            description: "Hang out, chat, learn and connect with like minded developers...",
-            membersCount: 216
-        },
-        {
-            image: image,
-            title: "Nft 2",
-            description: "Hang out, chat, learn and connect with like minded developers...",
-            membersCount: 248
-        },
-        {
-            image: image,
-            title: "Nft 5",
-            description: "Hang out, chat, learn and connect with like minded developers...",
-            membersCount: 249
-        },
-        {
-            image: image,
-            title: "Nft 3",
-            description: "Hang out, chat, learn and connect with like minded developers...",
-            membersCount: 216
-        },
-        {
-            image: image,
-            title: "Nft 2",
-            description: "Hang out, chat, learn and connect with like minded developers...",
-            membersCount: 248
-        },
-        {
-            image: image,
-            title: "Nft 5",
-            description: "Hang out, chat, learn and connect with like minded developers...",
-            membersCount: 249
-        },
-        {
-            image: image,
-            title: "Nft 3",
-            description: "Hang out, chat, learn and connect with like minded developers...",
-            membersCount: 216
+    const [openMessage, setOpenMessage]=useState(false);
+
+    const [communities, setCommunities]=useState([]);
+
+    useMemo(() => {
+        fetchCommunities();
+    }, []);
+
+    async function fetchCommunities() {
+        try {
+            const communitiesData=await API.graphql(graphqlOperation(listCommunities));
+            const communities=[];
+            // console.log(communitiesData);
+            communitiesData.data.listCommunities.items.map((item, index) => (
+                communities.push({
+                    name: item.name,
+                    description: item.description,
+                    image: item.profile_image===""? image:item.profile_image
+                })
+            ));
+            // console.log(communities);
+            setCommunities(communities);
+        } catch (error) {
+            setOpenMessage(true);
+            console.log(error);
         }
-    ];
+
+    }
 
     const css=(
         `
@@ -119,14 +92,16 @@ function ExploreCommunities() {
         }
         `
     );
+
     return (
         <View
             as="div"
             width="100%"
             backgroundColor="#171718"
             color="#fff"
+            minHeight="100%"
         >
-            <style>{ css}</style>
+            <style>{css}</style>
             <CssBaseline />
             <Header></Header>
             <Flex alignItems={"center"} justifyContent="center" direction={"column"} width="98%" height="300px" className="explore-communities-search" margin="1%" borderRadius={"1rem"} padding="20px">
@@ -148,14 +123,20 @@ function ExploreCommunities() {
                         communities.map((item, index) => (
                             <CommunityCard
                                 image={item.image}
-                                title={item.title}
+                                title={item.name}
                                 description={item.description}
-                                membersCount={item.membersCount}
                             />
                         ))
                     }
                 </View>
             </Flex>
+            <Snackbar
+                open={openMessage}
+                autoHideDuration={2000}
+                onClose={() => { setOpenMessage(false) }}
+                message="Error fetching communities list."
+            >
+            </Snackbar>
 
         </View>
     );

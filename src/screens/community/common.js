@@ -4,7 +4,7 @@ import { Routes } from '../../values/routes';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, IconButton, Card, CardContent, CardActionArea, Dialog, useTheme, useMediaQuery, DialogTitle, DialogContent, Snackbar } from '@mui/material';
 import { stringAvatar } from '../components/avatar';
-import { PersonAddOutlined, Group } from '@mui/icons-material';
+import { PersonAddOutlined} from '@mui/icons-material';
 import { useAuthenticator, Flex, Image, SearchField, Text, Heading } from '@aws-amplify/ui-react';
 
 export function titleCase(str) {
@@ -89,10 +89,6 @@ export function CommunityCard(props) {
                     />
                     <Heading color="#fff" paddingTop={"10px"}>{props.title}</Heading>
                     <Text color="#f9f9f8" paddingTop={"10px"}>{props.description}</Text>
-                    <Flex paddingTop={"20px"} color="#666666">
-                        <Group />
-                        <Text color="#666666">{props.membersCount}</Text>
-                    </Flex>
                 </CardContent>
             </CardActionArea>
         </Card>

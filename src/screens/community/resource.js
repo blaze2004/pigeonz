@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { CssBaseline } from '@mui/material';
 import { createEditor } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
@@ -7,13 +7,43 @@ import { Flex, View, Text, Heading } from '@aws-amplify/ui-react';
 import { Header, LinkCopiedSnackbar, PeopleCard, titleCase } from './common';
 import { EmailIcon, EmailShareButton, FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } from 'react-share';
 import { LinkOutlined } from '@mui/icons-material';
-import { Avatar, IconButton } from '@mui/material';
+import { Avatar, IconButton, Snackbar } from '@mui/material';
 import { host } from '../../values/routes';
-import TextEditor from '../editor/editor';
+import { API, graphqlOperation } from 'aws-amplify';
+import { getResource } from '../../graphql/queries';
 
 export function Resource(props) {
     const { communityName, resourceID }=useParams();
     const [open, setOpen]=useState(false);
+    const [openMessage, setOpenMessage]=useState(false);
+    const [resource, setResource]=useState({});
+    const [editorArea, setEditorArea]=useState((<Text>Loading</Text>));
+    const [editor]=useState(() => withReact(createEditor()));
+
+    const fetchResource=useCallback(async () => {
+        try {
+            const resourcedata=await API.graphql(graphqlOperation(getResource, { id: resourceID }));
+            const resource=resourcedata.data.getResource===null? window.location.pathname="/":resourcedata.data.getResource;
+            const initialValue=JSON.parse(resource.content);
+            const date=new Date(resource.createdAt);
+            resource.content=initialValue;
+            resource.createdAt=date.getDate()+','+date.toLocaleString('default', { month: 'short' })+' '+date.getFullYear();
+            console.log(resource);
+            setResource(resource);
+            setEditorArea(
+                (<Slate editor={editor} value={resource.content}>
+                    <Editable readOnly={true} />
+                </Slate>)
+            );
+        } catch (error) {
+            setOpenMessage(true);
+            console.log(error);
+        }
+    }, [resourceID, editor]);
+
+    useEffect(() => {
+        fetchResource();
+    }, [fetchResource]);
 
     const handleOpen=() => {
         setOpen(true);
@@ -26,26 +56,6 @@ export function Resource(props) {
         navigator.clipboard.writeText(url);
         handleOpen();
     }
-    const readOnly=!props.edit||false;
-    const resourceData={
-        date: "2/2/2022",
-        content: [
-            {
-                type: 'paragraph',
-                children: [
-                    {
-                        text:
-                            'This is a resource.',
-                    },
-                ],
-            },
-        ],
-        title: "AI: The New Age"
-    }
-
-    const [editor]=useState(() => withReact(createEditor()));
-
-    const EditWidget=readOnly? <Editable readOnly={true} />:<TextEditor editor={editor} readOnly={readOnly} />;
 
     return (
         <View
@@ -59,10 +69,10 @@ export function Resource(props) {
             <Header></Header>
             <Flex direction="column" alignItems="center">
                 <View as="div" minWidth="50%" padding="20px">
-                    <Heading level={1} fontWeight="bold" color="#fff">{resourceData.title+resourceID}</Heading>
+                    <Heading level={1} fontWeight="bold" color="#fff">{resource.title}</Heading>
                     <Flex justifyContent={"space-between"} alignItems="center" direction={"row"} paddingBottom="20px">
                         <PeopleCard name={titleCase(communityName)} >
-                            <Text color="#999999">{resourceData.date}</Text>
+                            <Text color="#999999">{resource.createdAt}</Text>
                         </PeopleCard>
                         <Flex aria-label="share buttons">
                             <IconButton onClick={() => copyLink()}>
@@ -83,11 +93,16 @@ export function Resource(props) {
 
                         </Flex>
                     </Flex>
-                    <Slate editor={editor} value={resourceData.content}>
-                        {EditWidget}
-                    </Slate>
+                    {editorArea}
 
                 </View>
+                <Snackbar
+                    open={openMessage}
+                    autoHideDuration={2000}
+                    onClose={() => { setOpenMessage(false) }}
+                    message="Error fetching resource details."
+                >
+                </Snackbar>
             </Flex>
         </View>
     );

@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { API, Auth, graphqlOperation } from 'aws-amplify';
 import { View, useAuthenticator, Heading, Flex } from '@aws-amplify/ui-react';
-import { Button, CssBaseline} from '@mui/material';
+import { Button, CssBaseline, Snackbar } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Routes } from '../../values/routes';
 import { Header, Popup } from '../community/common';
 import { CommunityCard } from '../community/common';
 import { CommunityForm } from '../community/forms';
-import image from '../../assets/wallpaper.png';
+import image from '../../assets/profile_image.jpg';
+import { getUserAdminCommunitiesList } from '../../graphql/customQueries';
 
 export function Dashboard() {
   const { signOut }=useAuthenticator((context) => [
@@ -18,56 +20,36 @@ export function Dashboard() {
     signOut();
     navigate(Routes.get("Auth"));
   }
-  const communities=[
-    {
-      image: image,
-      title: "Nft 1",
-      description: "Hang out, chat, learn and connect with like minded developers...",
-      membersCount: 248
-    },
-    {
-      image: image,
-      title: "Nft 3",
-      description: "Hang out, chat, learn and connect with like minded developers...",
-      membersCount: 216
-    },
-    {
-      image: image,
-      title: "Nft 2",
-      description: "Hang out, chat, learn and connect with like minded developers...",
-      membersCount: 248
-    },
-    {
-      image: image,
-      title: "Nft 5",
-      description: "Hang out, chat, learn and connect with like minded developers...",
-      membersCount: 249
-    },
-    {
-      image: image,
-      title: "Nft 3",
-      description: "Hang out, chat, learn and connect with like minded developers...",
-      membersCount: 216
-    },
-    {
-      image: image,
-      title: "Nft 2",
-      description: "Hang out, chat, learn and connect with like minded developers...",
-      membersCount: 248
-    },
-    {
-      image: image,
-      title: "Nft 5",
-      description: "Hang out, chat, learn and connect with like minded developers...",
-      membersCount: 249
-    },
-    {
-      image: image,
-      title: "Nft 3",
-      description: "Hang out, chat, learn and connect with like minded developers...",
-      membersCount: 216
+  const [openMessage, setOpenMessage]=useState(false);
+
+  const [communities, setCommunities]=useState([]);
+
+  useMemo(() => {
+    fetchCommunities();
+  }, []);
+
+  async function fetchCommunities() {
+    try {
+      const user=await Auth.currentAuthenticatedUser();
+      const communitiesData=await API.graphql(graphqlOperation(getUserAdminCommunitiesList, { filter : {userID : {eq: user.username}}}));
+      const communities=[];
+      // console.log(communitiesData);
+      communitiesData.data.listUserAdminCommunities.items.map((item, index) => (
+        communities.push({
+          name: item.community.name,
+          description: item.community.description,
+          image: image
+        })
+      ));
+      // console.log(communities);
+      setCommunities(communities);
+    } catch (error) {
+      setOpenMessage(true);
+      console.log(error);
     }
-  ];
+
+  }
+
   const css=(
     `
     .communities-list {
@@ -127,9 +109,8 @@ export function Dashboard() {
             communities.map((item, index) => (
               <CommunityCard
                 image={item.image}
-                title={item.title}
+                title={item.name}
                 description={item.description}
-                membersCount={item.membersCount}
               />
             ))
           }
@@ -138,6 +119,13 @@ export function Dashboard() {
       <Popup open={open} title="New Community">
         <CommunityForm setOpen={setOpen} />
       </Popup>
+      <Snackbar
+        open={openMessage}
+        autoHideDuration={2000}
+        onClose={() => { setOpenMessage(false) }}
+        message="Error fetching communities list."
+      >
+      </Snackbar>
     </View>
   );
 }
