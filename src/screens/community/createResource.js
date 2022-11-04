@@ -51,7 +51,7 @@ export function CreateResource(props) {
 
             const newResource=await API.graphql(graphqlOperation(createUserResource, { input: ResourceInput }));
             handleToggle(false);
-            window.location.pathname=`/communities/${communityName}/resources/${newResource.data.CreateResource.id}`;
+            window.location.pathname=`/communities/${communityName}/resources/${newResource.data.createResource.id}`;
         } catch (error) {
             console.log(error);
             handleToggle(false);
