@@ -12,7 +12,6 @@ import { host, Routes } from '../../values/routes';
 import TextEditor from '../editor/editor';
 import { listUserAdminCommunities, listUserMemberCommunities } from '../../graphql/queries';
 import { getPostsList, getEventsList, getResourcesList, getUserDetails, createUserPost, createUserEvent } from '../../graphql/customQueries';
-import TextEditor from '../editor/editor';
 
 export function ResourceCard(props) {
     const { communityName }=useParams();

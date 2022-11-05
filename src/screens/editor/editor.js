@@ -252,7 +252,7 @@ function TextEditor(props) {
     >
       <TitleTwoTone />
     </IconButton>
-  </ToolBar>):<p></p>;
+  </ToolBar>):null;
   return (
     <Flex
       backgroundColor="#171718"
