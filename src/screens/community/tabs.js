@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { createEditor } from 'slate';
 import { API, Auth, graphqlOperation } from 'aws-amplify';
-import { Slate, Editable, withReact } from 'slate-react';
+import { Slate, withReact } from 'slate-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { LinkCopiedSnackbar, PeopleCard, Popup } from './common';
 import { useParams } from 'react-router-dom';
@@ -12,6 +12,7 @@ import { host, Routes } from '../../values/routes';
 import TextEditor from '../editor/editor';
 import { listUserAdminCommunities, listUserMemberCommunities } from '../../graphql/queries';
 import { getPostsList, getEventsList, getResourcesList, getUserDetails, createUserPost, createUserEvent } from '../../graphql/customQueries';
+import TextEditor from '../editor/editor';
 
 export function ResourceCard(props) {
     const { communityName }=useParams();
@@ -79,7 +80,7 @@ export function ResourcesTab(props) {
     return (
         <Flex width="100%" direction="column" paddingTop="20px">
             <style>{css}</style>
-            <Button variant="contained" onClick={()=>navigate(`/communities/${communityName}/resources/new`)} style={{display: props.create ? 'block': 'hidden'}}>New Resource</Button>
+            <Button variant="contained" onClick={() => navigate(`/communities/${communityName}/resources/new`)} style={{ display: props.create? 'block':'hidden' }}>New Resource</Button>
             <View as="div" className="resources-list">
                 {
                     resources.map((item, index) => (
@@ -177,7 +178,7 @@ export function EventsTab(props) {
 
     return (
         <Flex direction={"column"} paddingTop="20px">
-            <Button variant="contained" onClick={handleOpen} style={{display: props.create ? 'block': 'hidden'}}>New Event</Button>
+            <Button variant="contained" onClick={handleOpen} style={{ display: props.create? 'block':'hidden' }}>New Event</Button>
             {
                 events.map((event, _) => (
                     <EventCard
@@ -191,9 +192,9 @@ export function EventsTab(props) {
                 title={"New Event"}
             >
                 <Flex direction="column" minWidth={"500px"} minHeight="700px" justifyContent={"center"}>
-                    <TextField label="Name" aria-required="true" value={formState.name} onChange={(event)=> setInput("name", event.target.value)}></TextField>
+                    <TextField label="Name" aria-required="true" value={formState.name} onChange={(event) => setInput("name", event.target.value)}></TextField>
 
-                    <TextField label="Registration Link" aria-required="true" value={formState.registration_link} onChange={(event)=>setInput("registration_link", event.target.value)}></TextField>
+                    <TextField label="Registration Link" aria-required="true" value={formState.registration_link} onChange={(event) => setInput("registration_link", event.target.value)}></TextField>
                 </Flex>
                 <DialogActions>
                     <Button variant="text" onClick={handleClose}>Discard</Button>
@@ -255,7 +256,7 @@ export function MembersTab(props) {
 
     return (
         <Flex direction={"column"} paddingTop="20px">
-            <Button variant="contained" onClick={() => copyLink()} style={{display: props.create ? 'block': 'hidden'}}>Invite</Button>
+            <Button variant="contained" onClick={() => copyLink()} style={{ display: props.create? 'block':'hidden' }}>Invite</Button>
             <Heading level={5} fontWeight="bold" color="#fff" paddingTop={"20px"}>Admins</Heading>
             {
                 admins.map((name, _) => (
@@ -308,7 +309,7 @@ export function Post(props) {
             </PeopleCard>
             <Flex direction="column" paddingTop={"10px"} paddingLeft="20px" paddingRight={"20px"}>
                 <Slate editor={editor} value={initialValue}>
-                    <Editable readOnly={true} />
+                    <TextEditor editor={editor} readOnly={true} />
                 </Slate>
                 <Divider orientation="horizontal" />
             </Flex>
@@ -347,7 +348,7 @@ export function PostsTab(props) {
         },
     ]);
 
-    
+
 
     const fetchPosts=useCallback(async () => {
         try {
@@ -367,7 +368,7 @@ export function PostsTab(props) {
             if (!initialValue||initialValue.length===0) return
 
             const user=await Auth.currentAuthenticatedUser();
-            
+
             const PostInput={
                 communityPostsId: communityId,
                 content: JSON.stringify(initialValue),
@@ -392,7 +393,7 @@ export function PostsTab(props) {
 
     return (
         <Flex direction={"column"} paddingTop="20px">
-            <Button variant="contained" onClick={handleOpen} style={{display: props.create ? 'block': 'hidden'}}>New Post</Button>
+            <Button variant="contained" onClick={handleOpen} style={{ display: props.create? 'block':'hidden' }}>New Post</Button>
             {
                 posts.map((post, _) => (
                     <Post post={post} />

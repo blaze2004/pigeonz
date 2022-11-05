@@ -202,6 +202,57 @@ function TextEditor(props) {
       }
     }
   };
+
+  const toolbarWidget=!readOnly? (<ToolBar>
+    <IconButton
+      onPointerDown={(e) => {
+        formatBold();
+      }}
+      style={{ color: "grey" }}
+    >
+      <FormatBold />
+    </IconButton>
+    <IconButton
+      onPointerDown={(e) => {
+        formatItalic();
+      }}
+      style={{ color: "grey" }}
+    >
+      <FormatItalic />
+    </IconButton>
+    <IconButton
+      onPointerDown={(e) => {
+        formatUnderlined();
+      }}
+      style={{ color: "grey" }}
+    >
+      <FormatUnderlined />
+    </IconButton>
+    <IconButton
+      onPointerDown={(e) => {
+        formatCode();
+      }}
+      style={{ color: "grey" }}
+    >
+      <Code />
+    </IconButton>
+    <IconButton
+      onPointerDown={(e) => {
+        formatList();
+      }}
+      style={{ color: "grey" }}
+    >
+      <List />
+    </IconButton>
+    <IconButton
+      onPointerDown={(e) => {
+        formatTitle();
+      }}
+      style={{ color: "grey" }}
+    >
+      <TitleTwoTone />
+    </IconButton>
+  </ToolBar>):<p></p>;
   return (
     <Flex
       backgroundColor="#171718"
@@ -210,56 +261,7 @@ function TextEditor(props) {
       padding="10px"
       width="100%"
     >
-      <ToolBar>
-        <IconButton
-          onPointerDown={(e) => {
-            formatBold();
-          }}
-          style={{ color: "grey" }}
-        >
-          <FormatBold />
-        </IconButton>
-        <IconButton
-          onPointerDown={(e) => {
-            formatItalic();
-          }}
-          style={{ color: "grey" }}
-        >
-          <FormatItalic />
-        </IconButton>
-        <IconButton
-          onPointerDown={(e) => {
-            formatUnderlined();
-          }}
-          style={{ color: "grey" }}
-        >
-          <FormatUnderlined />
-        </IconButton>
-        <IconButton
-          onPointerDown={(e) => {
-            formatCode();
-          }}
-          style={{ color: "grey" }}
-        >
-          <Code />
-        </IconButton>
-        <IconButton
-          onPointerDown={(e) => {
-            formatList();
-          }}
-          style={{ color: "grey" }}
-        >
-          <List />
-        </IconButton>
-        <IconButton
-          onPointerDown={(e) => {
-            formatTitle();
-          }}
-          style={{ color: "grey" }}
-        >
-          <TitleTwoTone />
-        </IconButton>
-      </ToolBar>
+      {toolbarWidget}
       <Editable
         readOnly={readOnly}
         onKeyDown={onKeyDown}

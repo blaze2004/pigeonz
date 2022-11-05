@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { CssBaseline } from '@mui/material';
 import { createEditor } from 'slate';
-import { Slate, Editable, withReact } from 'slate-react';
+import { Slate, withReact } from 'slate-react';
 import { useParams, useLocation } from 'react-router-dom';
 import { Flex, View, Text, Heading } from '@aws-amplify/ui-react';
 import { Header, LinkCopiedSnackbar, PeopleCard, titleCase } from './common';
@@ -11,6 +11,7 @@ import { Avatar, IconButton, Snackbar } from '@mui/material';
 import { host } from '../../values/routes';
 import { API, graphqlOperation } from 'aws-amplify';
 import { getResource } from '../../graphql/queries';
+import TextEditor from '../editor/editor';
 
 export function Resource(props) {
     const { communityName, resourceID }=useParams();
@@ -32,7 +33,7 @@ export function Resource(props) {
             setResource(resource);
             setEditorArea(
                 (<Slate editor={editor} value={resource.content}>
-                    <Editable readOnly={true} />
+                    <TextEditor editor={editor} readOnly={true} />
                 </Slate>)
             );
         } catch (error) {
